@@ -1,0 +1,50 @@
+#data:
+#    - "svn://www.in-silico.de/opentox/data/cpdb080429/"
+#    - "svn://www.in-silico.de/opentox/data/iris080215/"
+#    - "svn://www.in-silico.de/opentox/data/kazius06/"
+#    - "svn://www.in-silico.de/opentox/data/fda-human-liver/"
+#    - "svn://www.in-silico.de/opentox/data/fdamdd080215/"
+#    - "svn://www.in-silico.de/opentox/data/epafhm080215/"
+
+# plugins
+# put the the plugins, that you are developing here. you will need shell access to push changes back
+-
+  url: "ssh://opentox.org/~ch/git/opentox-plugin.git"
+  path: vendor/plugins/opentox
+  install: "rake opentox:compile_java"
+-
+  url: "ssh://opentox.org/~ch/git/lazar-plugin.git"
+  path: vendor/plugins/lazar
+  install: "rake lazar:program:install"
+# openbabel
+# R
+# cdk
+-
+  url: "git://github.com/lazyatom/engines.git"
+  path: vendor/plugins/engines
+  version: "2.1.0"
+-
+  url: "git://github.com/activescaffold/active_scaffold.git"
+  path: vendor/plugins/activescaffold
+-
+  url: "git://github.com/activescaffold/file_column.git"
+  path: vendor/plugins/file_column
+
+# rails:
+-
+  url: "git://github.com/rails/rails.git"
+  path: vendor/rails
+  version: "v2.1.0"
+
+# gems:
+# it is a good idea to freeze all gems that you are using to avoid versioning conflicts
+-
+  url: "git://github.com/nex3/haml.git"
+  path: vendor/gems/haml
+  install: "cd vendor/gems/haml/ && rake install && haml --rails #{RAILS_ROOT}"
+# rake
+# mechanize
+# rjb
+# sqlite3-ruby
+# statarray
+# rsruby

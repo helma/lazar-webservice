@@ -1,0 +1,173 @@
+# svn url for the source code of the prediction server
+version: "svn://www.in-silico.de/lazar/trunk"
+# list of databases for the prediction server (under public/data)
+data:
+
+# Regression
+  - EPA Integrated Risk Information System (IRIS):
+
+    - endpoint: upper-bound excess lifetime cancer risk
+      directory: public/data/iris070628/drinkingwater_unitrisk_micromol_per_l
+      endpoint_definition_url: "http://www.epa.gov/NCCT/dsstox/CentralFieldDef.html#DrinkingWater_UnitRisk_micromol_per_L"
+      endpoint_definition: 'DrinkingWater_UnitRisk_microg_per_L value converted to molar units in cases where test substance is not a mixture of different molecular weight substances, based on formula: DrinkingWater_UnitRisk_microg_per_L / STRUCTURE_MolecularWeight; molar units should be used for any structure-activity relationship comparisons. "blank" or null entry indicates no unit risk determined or substance is a mixture not suitable for molar unit conversion.'
+      source_url: "http://www.epa.gov/NCCT/dsstox/sdf_iristr.html"
+      applicability_domain: "0.2"     
+      unit: "micromol/l"
+
+  - FDA Maximum Recommended Daily Dose (FDAMDD):
+
+    - endpoint: Maximum recommended daily dose
+      directory: public/data/fdamdd070725/dose_mrdd_mmol
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#Dose_MRDD_mmol"
+      endpoint_definition: 'Maximum recommended daily dose measure, Dose_MRDD_mg, converted to millimoles:  Dose_MRDD_mmol = Dose_MRDD_mg / STRUCTURE_MolecularWeight. Note that this mg to mmol conversion in FDAMDD assumes that the compound dose in mg corresponds to the dose of the active ingredient in a formulation. '
+      source_url: "http://www.epa.gov/ncct/dsstox/sdf_fdamdd.html"
+      applicability_domain: "0.2"
+      unit: "milimol"
+
+  - EPA Fathead Minnow Acute Toxicity (EPAFHM):
+
+    - endpoint: 96 hr LC50
+      directory: public/data/epafhm070615/lc50_mmol
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#LC50_mmol"
+      endpoint_definition: 'Conversion of LC50_mg to mmol units: LC50_mmol = LC50_mg / STRUCTURE_MolecularWeight. “blank” or null entry indicates no mortality, or less than 50% mortality observed at 96hr.'
+      source_url: "http://www.epa.gov/ncct/dsstox/sdf_epafhm.html"
+      applicability_domain: "0.15"
+      unit: "milimol"
+
+# Classification
+  - Carcinogenicity:
+
+    - endpoint: Rodent carcinogenicity (multiple sex/species/sites)
+      directory: public/data/cpdb071025/multi_cell_call/
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#ActivityCategory_MultiCellCall"
+      endpoint_definition: 'An assignment of carcinogenic categorical activity based on multicell evidence for or against activity:<br/> <b>active</b>, with more than one TD50 or tumor site listed for carcinogenicity experiment sex/species cells (e.g., liver, lung, or Rat Male, Rat Female, etc);<br/> <b>inactive</b>, with no TD50 or tumor site listed AND more than one "no positive results" entry for carcinogenicity experiment sex/species cells (e.g., Rat Male, Rat Female, etc);' 
+      source_url: "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Rodent carcinogenicity (single sex/species/site)
+      directory: public/data/cpdb071025/single_cell_call/
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#ActivityCategory_SingleCellCall"
+      endpoint_definition: 'An assignment of carcinogenic categorical activity based on minimal evidence for or against activity:<br/> <b>active</b>, with one or more TD50 and tumor site listed for one or more carcinogenicity experiment sex/species cell (e.g., Rat Male, Rat Female, etc);<br/> <b>inactive</b>, with no TD50 or tumor site listed AND one or more "no positive results" entry for one or more carcinogenicity experiment sex/species cell (e.g., Rat Male, Rat Female, etc);'
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Rat carcinogenicity (both sexes)
+      directory: public/data/cpdb071025/rat_carcinogenicity/
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Rat_BothSexes"
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Rat carcinogenicity (male)
+      directory: public/data/cpdb071025/rat_female_carcinogenicity/
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Rat_Male"
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Rat carcinogenicity (female)
+      directory: public/data/cpdb071025/rat_male_carcinogenicity/
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Rat_Female"
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Mouse carcinogenicity (both sexes)
+      directory: public/data/cpdb071025/mouse_carcinogenicity/
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Mouse_BothSexes"
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Mouse carcinogenicity (male)
+      directory: public/data/cpdb071025/mouse_female_carcinogenicity/
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Mouse_Male"
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Mouse carcinogenicity (female)
+      directory: public/data/cpdb071025/mouse_male_carcinogenicity/
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Mouse_Female"
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Hamster carcinogenicity (both sexes)
+      directory: public/data/cpdb071025/hamster_carcinogenicity/
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Hamster_BothSexes"
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Hamster carcinogenicity (male)
+      directory: public/data/cpdb071025/hamster_male_carcinogenicity/
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Hamster_Male"
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    - endpoint: Hamster carcinogenicity (female)
+      directory: public/data/cpdb071025/hamster_female_carcinogenicity/
+      endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Hamster_Female"
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+  - Mutagenicity:
+
+    -
+      endpoint: Salmonella typhimurium (CPDB)
+      svn_url: "svn://www.in-silico.de/opentox/data/cpdb071025/salmonella_mutagenicity/"
+      directory: public/data/cpdb071025/salmonella_mutagenicity/
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#Mutagenicity_SAL_CPDB"
+      endpoint_definition: "A chemical is classified within the CPDB as mutagenic, i.e. positive, in the Salmonella assay if it was evaluated overall as either mutagenic or weakly mutagenic by Zeiger or as overall positive by the EPA Gene-Tox Program. All other chemicals evaluated for mutagenicity by these two sources are reported as negative."
+      source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+
+    -
+      endpoint: Salmonella typhimurium (Kazius/Bursi)
+      svn_url: "svn://www.in-silico.de/opentox/data/kazius06/"
+      directory: public/data/kazius06/
+      endpoint_definition_url: "http://pubs.acs.org/cgi-bin/abstract.cgi/jmcmar/2005/48/i01/abs/jm040835a.html"
+      endpoint_definition: "<b>nonmutagen</b>, if only negative Ames test results were reported</br> <b>mutagen </b>if one ore more positive Ames test results are available"
+      source_url:  "http://www.cheminformatics.org/datasets/bursi/"
+
+  - Human liver toxicity:
+
+    -
+      endpoint: Composite activity
+      svn_url: "svn://www.in-silico.de/opentox/data/fda-human-liver/"
+      directory: public/data/fda-human-liver/composite-activity
+      endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+      endpoint_definition: ""
+      source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+
+    -
+      endpoint: Alkaline phosphatase increase
+      svn_url: "svn://www.in-silico.de/opentox/data/fda-human-liver/"
+      directory: public/data/fda-human-liver/alkaline-phosphatase-increase
+      endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+      endpoint_definition: ""
+      source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+
+    -
+      endpoint: GGT increase
+      svn_url: "svn://www.in-silico.de/opentox/data/fda-human-liver/"
+      directory: public/data/fda-human-liver/GGT-increase
+      endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+      endpoint_definition: ""
+      source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+
+    -
+      endpoint: LDH increase
+      svn_url: "svn://www.in-silico.de/opentox/data/fda-human-liver/"
+      directory: public/data/fda-human-liver/LDH-increase
+      endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+      endpoint_definition: ""
+      source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+
+    -
+      endpoint: SGOT increase
+      svn_url: "svn://www.in-silico.de/opentox/data/fda-human-liver/"
+      directory: public/data/fda-human-liver/SGOT-increase
+      endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+      endpoint_definition: ""
+      source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+
+    -
+      endpoint: SGPT increase
+      svn_url: "svn://www.in-silico.de/opentox/data/fda-human-liver/"
+      directory: public/data/fda-human-liver/SGPT-increase
+      endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+      endpoint_definition: ""
+      source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+      

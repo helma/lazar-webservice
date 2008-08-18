@@ -1,0 +1,6 @@
+# list of svn urls for the validation runs
+versions:
+  -  "svn+ssh://www.in-silico.de/var/local/svn-pub/lazar/trunk"
+# list of databases (under public/data/) for the validation runs
+data:
+  - cpdb071025

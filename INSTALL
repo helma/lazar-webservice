@@ -1,0 +1,34 @@
+INSTALL
+=======
+
+These are OpenTox installation instructions for Debian, Ubuntu and Redhat Enterprise Linux.
+Execute commands as superuser (root).
+
+Debian, Ubuntu
+--------------
+
+1)  Checkout lazar: svn co svn://www.in-silico.de/opentox/lazar-gui (obviously you have already done this)
+    Install rake: 
+    ~# apt-get install rake
+
+2)  Edit plugins and data in config/svn.yml
+
+3)  Install basic packages and data: rake svn:up
+    Follow the READMEs in vendor/plugins/opentox and vendor/plugins/lazar
+
+
+Redhat Enterprise Linux
+-----------------------
+
+0)  Preliminaries: Go to Applications->Add/Remove Software. Under Development select: Ruby, Development Libraries, Development Tools
+    Install the following packages as well: rdoc
+
+1) Checkout lazar: svn co svn://www.in-silico.de/opentox/lazar-gui (obviously you have already done this)
+   Install rake: Get rubygems from http://rubyforge.org/frs/?group_id=126 and install as described on http://www.rubygems.org
+   ~# gem install rake
+
+2)  Edit plugins and data in config/svn.yml
+
+3)  Install basic packages and data: rake svn:up
+    Follow the READMEs in vendor/plugins/opentox and vendor/plugins/lazar
+
