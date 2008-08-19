@@ -1,52 +1,20 @@
-# data and validation results
-- 
-  url: "ssh://opentox.org/~ch/git/cpdb-data.git"
-  path: public/data/cpdb
-  version: 080429
-- 
-  url: "ssh://opentox.org/~ch/git/iris-data.git"
-  path: public/data/iris
-  version: 080215
-- 
-  url: "ssh://opentox.org/~ch/git/kazius-data.git"
-  path: public/data/kazius
-- 
-  url: "ssh://opentox.org/~ch/git/fda-human-liver-data.git"
-  path: public/data/fda-human-liver
-- 
-  url: "ssh://opentox.org/~ch/git/fdamdd-data.git"
-  path: public/data/fdamdd
-  version: 080215
-- 
-  url: "ssh://opentox.org/~ch/git/epafhm-data.git"
-  path: public/data/epafhm
-  version: 080215
-
 # plugins
 # put the the plugins, that you are developing here. you will need shell access to push changes back
 -
   url: "ssh://opentox.org/~ch/git/opentox-plugin.git"
   path: vendor/plugins/opentox
-  install: "rake opentox:compile_java"
+  install: "rake opentox:install"
+  # opentox installs also  openbabel, R and cdk
 -
   url: "ssh://opentox.org/~ch/git/lazar-plugin.git"
   path: vendor/plugins/lazar
   install: "rake lazar:program:install"
-#-
-#  url: "ssh://opentox.org/~ch/git/openbabel.git"
-#  path: vendor/lib/openbabel/src
-#  install: "rake lazar:program:install"
-#-
-#  url: "ssh://opentox.org/~ch/git/R.git"
-#  path: vendor/lib/R/src
-#  install: "rake lazar:program:install"
-# openbabel
-# R
-# cdk
+
+# external plugins, maybe they should be installed in the future by opentox plugin
 -
   url: "git://github.com/lazyatom/engines.git"
   path: vendor/plugins/engines
-  version: "2.1.0"
+  tag: "2.1.0"
 -
   url: "git://github.com/activescaffold/active_scaffold.git"
   path: vendor/plugins/activescaffold
@@ -58,21 +26,27 @@
   url: "git://github.com/rails/exception_notification.git"
   path: vendor/plugins/exception_notification
 
-# rails:
-#-
-#  url: "git://github.com/rails/rails.git"
-#  path: vendor/rails
-#  version: "v2.1.0"
+# data and validation results
+- 
+  url: "ssh://opentox.org/~ch/git/cpdb-data.git"
+  path: public/data/cpdb
+  tag: 080429
+- 
+  url: "ssh://opentox.org/~ch/git/iris-data.git"
+  path: public/data/iris
+  tag: 080215
+- 
+  url: "ssh://opentox.org/~ch/git/kazius-data.git"
+  path: public/data/kazius
+- 
+  url: "ssh://opentox.org/~ch/git/fda-human-liver-data.git"
+  path: public/data/fda-human-liver
+- 
+  url: "ssh://opentox.org/~ch/git/fdamdd-data.git"
+  path: public/data/fdamdd
+  tag: 080215
+- 
+  url: "ssh://opentox.org/~ch/git/epafhm-data.git"
+  path: public/data/epafhm
+  tag: 080215
 
-# gems:
-# it is a good idea to freeze all gems that you are using to avoid versioning conflicts
-# -
- #  url: "git://github.com/nex3/haml.git"
-#   path: vendor/gems/haml
-#   install: "cd vendor/gems/haml/ && rake install && haml --rails #{RAILS_ROOT}"
-# rake
-# mechanize
-# rjb
-# sqlite3-ruby
-# statarray
-# rsruby

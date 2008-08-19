@@ -12,29 +12,30 @@ task :update do
       puts `git clone #{plugin['url']} #{plugin['path']}`
     end
     # get the correct tag
-    puts "switching to tag #{plugin['version']} of  #{plugin['url']}" if plugin['version']
-    puts `cd #{plugin['path']} && git checkout -b #{plugin['version']} #{plugin['version']}` if plugin['version']
+    puts "switching to tag #{plugin['tag']} of  #{plugin['url']}" if plugin['tag']
+    puts `cd #{plugin['path']} && git checkout -b #{plugin['tag']} #{plugin['tag']}` if plugin['tag']
     # run installation commands
     puts `#{plugin['install']}` if plugin['install']
   end
 end
 
-desc "Check svn status" 
-task :status do
-  system "svn status"
-  tree = YAML::parse(File.open("config/svn.yml")).transform
-  tree.each do |key,data|
-    if data
-      data.each do |svn_path|
-        case key
-        when "plugins"
-          dir = "vendor/plugins/"+File.basename(svn_path.sub(/trunk/,''))
-        when "data"
-          dir = "public/data/"+File.basename(svn_path)
-        end
-        system "svn status #{dir}"
+namespace :git do
+
+  desc "Check git status" 
+  task :status do
+    puts RAILS_ROOT
+    begin
+      sh "git status"
+    rescue
+    end
+    YAML::load(File.open("config/plugins.yml")).each do |plugin|
+      puts "#{RAILS_ROOT}/#{plugin['path']}"
+      begin
+        sh "cd #{plugin['path']} && git status"
+      rescue
       end
     end
   end
+
 end
 
