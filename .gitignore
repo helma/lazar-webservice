@@ -1,0 +1,4 @@
+vendor/plugins
+vendor/lib
+public/data
+log/*

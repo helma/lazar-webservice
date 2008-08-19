@@ -1,0 +1,307 @@
+Tue Mar 5 Kuwashima
+ *ext/rjb.c
+ *ext/rjb.h
+ *ext/rjbexception.c
+ 	add auto load method.
+Tue Mar  4 Kuwashima
+ *ext/rjbexception.c
+ *ext/rjb.c
+ *test/test.rb
+ 	clear(ignore) exception in current java thread, before some operation.
+ *ext/rjbexception.c
+ *ext/rjb.c
+	add auto load for Rjb::bind, Rjb::throw
+ *ext/rjb.c
+ *test/test.rb
+	add Rjb::unbind
+ *test/test.rb
+ 	add loading rubygems 
+Sat Feb 23 arton
+ *test/test.rb
+	let test_field metod use Test.class instead of Point.class
+ *test/Test.java
+	add a public field for testing
+Fri Feb 22 arton
+ *ext/rjb.c
+	mark version 1.1.3 for the next release.
+Fri Feb 22 arton
+ *ext/rjb.c
+	fix field reference (bug# 18238)
+Wed Jan 9 arton
+ *ext/rjb.h
+	add some ruby macros that defined after 1.8.6 for compatibility
+	Change RBridge.class by 1.4.2
+ *data/rjb/jp/co/infoseek/hp/arton/rjb/RBridge.class 
+	compiled by 1.4.2 version of Java	
+ *rjb.c
+        mark version 1.1.2 for the next release.
+Tue Dec 27 Kuwashima
+ *test/Test.java
+ *test/test.rb
+ *ext/depend
+ *ext/load.c
+ *ext/extconf.rb
+ *ext/rjbexception.c
+ *ext/rjb.c
+ *ext/riconv.c
+ 	change for compatibility with Ruby-1.9.0
+Tue Nov 20 arton
+ *rjb.c
+	mark version 1.10.12 for next relase.
+ *load.c
+	omit useless double-quotations from JAVA_HOME, maybe specifies a longpathname (but useless).
+Wed Nov 14 Kuwashima
+ *rjb.c
+ 	add error check to constructor.
+Fri Nov 9 arton
+ *test.rb
+ *Test.java
+	add test for reproducing rjb-bugs-15430
+ *rjb.c
+	fix rjb-bugs-15430 that caused by bad array conversion.
+	(generics method result signature is an object, but the real result is typed array)
+ *riconv.c
+	correct to get the number of array element.
+Tue Oct 23 Kuwashima
+ *riconv.c
+	Change string encoding conversion rule.
+Mon Oct 22 Kuwashima
+ *riconv.c
+ *riconv.h
+	recycle iconv instance.
+ *test/test.rb
+	add cases for test_kjconv
+Sun Sep 23 arton
+ *rjb.c
+	version 1.0.9
+	convert to Ruby's type if Rjb::primitive_converion is enalbed and the result type is java.lang.Object
+	support the object conversion for a bignum to long.
+Sat Sep 15 arton
+ *rjb.c
+	version 1.0.8
+	correction of 1.0.7, support long type.
+Fri Sep 14 arton
+ *rjb.c
+	version 1.0.7
+	add auto primitive conversion toggled by Rjb::primitive_conversion
+ *test.rb
+	add test_auto_conv
+Sun Jun 17 arton
+ *rjb.c
+        add method aliases.
+	setXxYy -> xx_yy=
+	getXxYy -> xx_yy
+	isXxYy  -> xx_yy?
+	xxYyZz  -> xx_yy_zz
+ *test.rb
+	add a test for the method alias feature.
+Tue Nov 21 arton
+ *rjb.c
+       Skip the constant registering process, if the constant was already defined. 
+ *load.c
+ *rjb.c
+ *rjbexception.c
+ *rjb.h	 
+	add prefix 'rjb' for externed symbol names to avoid confliction.
+	
+Sun Oct 08 arton (on behalf of richard apodaca)
+ *load.c
+	support AMD64
+	
+Mon Sep 11 arton
+ *test.rb
+	add a test of arguments types are various array.
+ *Test.java
+	add a test of arguments types are various array.
+ *rjb.c
+	accept nil for array parameter.
+Sun Sep 10 arton
+ *test.rb
+	add a test of return type is an object wrapped an array
+ *Test.java
+	add a method that returns an object wrapped an array
+ *rjb.c
+	check array-mark in jv2rv for returned object was an array
+Tue Aug 1 arton
+ *load.c
+ *rjb.c
+	change load pathname of the bridge class.
+ *post-install.rb
+	add for remove previous installed rjb.so.
+ *rjb.rake
+	add for build Gem.
+ *rjb.rb	
+	for preparing the pathname constant of the bridge class.
+ *depend
+	chage binary name from rjb.so to rjbcore.so
+ *extconf.rb
+	chage binary name from rjb.so to rjbcore.so
+	
+Mon Jul 31 arton
+ *load.c
+	fix buffer allocation
+
+Sun Jul 16 (Jun 22) Kuwashima and arton
+ *rjb.c
+	version 0.2.8
+ *MANIFEST
+ *depend	
+ *load.c
+ *rjbexception.c
+	change jni.h to jniwrap.h.
+	change the bridge class's header according to JDK 5.0's javah.
+ *jniwrap.h
+	wrap jni.h for Cygin
+	
+Sat Jun 10 14:10:05 2006 arton
+ *rjb.c
+   	version 0.2.7
+	support an array of arrays from ruby to java.
+
+Mon May 8 08:52:12 2006 arton
+ *load.c
+	revision 5
+	support both Intel and PPC Mac.
+	Patched version was contributed by Demetrius Nunes.
+
+Wed Apr 12 03:57:12 2006 arton
+ *rjb.c
+	version 0.2.6
+	support an array of arrays.
+ *test.rb	
+	add an array of arrays test, some tests are contributed by Darren Day.
+ *Test.java
+	add a test method that returns an array of arrays, some tests are
+         contributed by Darren Day.
+	
+Sat Dec 24 18:56:38 2005 arton
+ *rjb.c
+	version 0.2.5
+	release String, Float, Array object after method call.
+ *gctest.rb
+	add for String object gc test
+	
+Mon Sep 19 01:09:30 2005 arton
+ *rjb.c
+	version 0.2.4
+	use null instead of empty string when String argument is nil
+	omit unused local variable from jstring2val
+ *test.rb
+	add null string test (bug since utf-8 support)
+	
+Tue Jun 28 01:57:07 2005 arton
+ *rjb.c
+	version 0.2.3
+	convert result object to imported class if object is an instance of Class
+	call Class#forName if argument count is 1
+ *test.rb
+	add test_importobj contributed by Mr. Kuwashima, thanks.
+	
+Mon Jun 27 20:30:50 2005 arton
+	treat Class.forName as Rjb::import
+ *rjb.c
+	version 0.2.2
+	add method 'forName' into imported Class object
+	if pass imported object to JVM, extract Class object from ruby object
+ *test.rb
+	add above tests
+	
+Sat Jun 25 05:58:36 2005 arton
+	most bugs were reported by Mr. Micael Weller, thanks.
+ *rjb.c
+	version 0.2.1
+	correct derived static method search
+	search class methods then class's instance methods when called by class
+	avoid register non capitalized named constants into constants table
+	correct capitalized named method search 
+ *riconv.c
+	never call iconv if $KCODE is nil
+ *load.c
+	using path separator ; for cygwin (by Ryugate)
+	
+Sun Apr 24 05:26:16 2005 arton
+ *rb.c
+	version 0.2.0
+	delete localref if globalref was created.
+	load can take the second argument for jvm
+ *load.c
+	load can take the second argument for jvm
+	
+Mon Jan 17 02:40:21 2005 arton
+ *rjb.c
+	add 'throw' module function.
+	move java exception handling functions into newly created rjbexception.c
+ *rjb.h
+	declations for rjb.c and rjbexception.c
+ *rjbexception.c
+	java exception handling functions, and 'throw' module function.
+ *test.rb
+	adding throw test.
+	
+Wed Jan 12 00:01:08 2005 Kaspar Schiess and arton
+ *rjb.c
+	correct Rjb::load parameter evaluation (classpath).
+   - many thanks to Mr.Schiess.
+
+Sun Nov 21 02:51:43 2004 Kuwashima and arton
+ *rjb.c
+        move dbcs-utf-8 auto conversion feature into riconv.?
+        remove JNI version argument from Rjb::load. (bug reported by Mr.Tateishi)
+ *load.c
+        correct CLASSPATH setting (bad environment name).(bug reported by Mr.Tateishi)
+ *riconv.c riconv.h (contributed by Mr.Kuwashima)
+        DBCS - utf-8 auto conversion functions.
+ *depend MANIFEST
+        add riconv.?
+   - many tanks to Mr.Kuwashima and Mr.Tateishi.
+
+Tue Oct 5 23:08:59 2004 Kuwashima and arton
+ *test.rb
+	add kanji conversion test
+ *rjb.c	
+	add dbcs(sjis and euc-jp) - utf-8 auto conversion feature.
+	the patch was contributed by Mr.Kuwashima, many thanks.
+	
+Sun Oct 3 18:24:42 2004 arton
+ *load.c	
+	JNIEnv* now using local variable instead of global one.
+	Because AWT event use a worker thread, and JNI need thread's owned JNIEnv.
+ *rjb.c
+	JNIEnv* now using local variable instead of global one.
+	Because AWT event use a worker thread, and JNI need thread's owned JNIEnv.
+	This change was suggested by Mr.Kuwashima, he also tested the behavior,
+	 and gave me some test codes.
+	and attach_current_thread is from Mr.Kuwashima's patch.
+	Many thanks to Mr.Kuwashima.
+	
+Sat Sep 25 03:25:45 2004 arton
+ *rjb.c		
+	implements interface's method argument conversion.
+ *test.rb
+	add Comparable test (interface with method arguments)
+ *Test.java	
+	add Comparable test method.
+
+Wed Sep 22 02:30:15 2004 arton	
+ *rjb.c	
+	correct constants load, using mid-class.
+	convert null string to nil
+	
+Wed Sep 22 00:05:32 2004 arton	
+ *rjb.c	
+	correct ruby type checking. If the parameter type is java.lang.String, rjb instance is always accepted.
+	
+Mon Sep 20 22:02:53 2004 arton
+ *rjb.c
+	checking method/constructor signature with class when the argument is rjb's instance.
+Sun Sep 19 00:54:35 2004 arton
+ *rjb.c
+	convert Java exception to Ruby's StandardError derived class.
+	checking method/constructor signature when invoking if no signatur argument is supplied.
+	adding field accessor.
+	
+Sun Sep 12 21:42:00 2004 arton
+ *rjb.c	
+	call exception description when verbose = true.
+	correct recursive import call (for Boolean).
+	corrent method not found message creation.
