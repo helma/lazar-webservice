@@ -5,14 +5,15 @@ task :update do
   puts `git pull`
   YAML::load(File.open("config/plugins.yml")).each do |plugin|
     # update/create plugin
+    puts "updating #{plugin['url']}"
     if File.directory?(plugin['path'])
-      puts `git pull #{plugin['url']} #{plugin['path']}`
+      puts `cd #{plugin['path']} && git pull`
     else
       puts `git clone #{plugin['url']} #{plugin['path']}`
-      puts `cat #{plugin['path']} >> .gitignore`
     end
     # get the correct tag
-    puts `git checkout #{plugin['version']}` if plugin['version']
+    puts "switching to tag #{plugin['version']} of  #{plugin['url']}" if plugin['version']
+    puts `cd #{plugin['path']} && git checkout -b #{plugin['version']} #{plugin['version']}` if plugin['version']
     # run installation commands
     puts `#{plugin['install']}` if plugin['install']
   end

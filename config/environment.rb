@@ -4,7 +4,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-#RAILS_GEM_VERSION = '2.0.2'
+RAILS_GEM_VERSION = '2.1'
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -15,14 +15,19 @@ require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 #    File.directory?(lib = "#{dir}/lib") ? lib : dir
 #end
 
+# R and Java configuration files (for building gems)
+require "R.rb"
+require "java.rb"
+
 Rails::Initializer.run do |config|
   config.plugins = [:engines, :opentox, :lazar, :all]
-#  config.gem 'rino'
-#  config.gem 'mechnize'
-#  config.gem 'rjb'
-#  config.gem 'rsruby'
-#  config.gem 'sqlite3-ruby'
-#  config.gem 'statarray'
+  config.gem 'mechanize'
+  config.gem 'rjb'
+  config.gem 'rsruby'
+  config.gem 'sqlite3-ruby', :lib => "sqlite3"
+  config.gem 'statarray'
+  config.gem 'haml'
+  config.gem 'thin'
   # Settings in config/environments/* take precedence those specified here
   #config.action_controller.session = { :session_key => "_myapp_session", :secret => "dsftrJKJdsipP" }
   
@@ -73,6 +78,6 @@ require 'config/R.rb'
 
 ENV['CLASSPATH'] = "#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/:#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/cdk-1.0.1.jar"
 
-ExceptionNotifier.exception_recipients = %w(helma@in-silico.de)
+#ExceptionNotifier.exception_recipients = %w(helma@in-silico.de)
 # defaults to exception.notifier@default.com
-ExceptionNotifier.sender_address = %("Application Error" <helma@in-silico.de>)
+#ExceptionNotifier.sender_address = %("Application Error" <helma@in-silico.de>)
