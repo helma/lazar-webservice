@@ -142,7 +142,7 @@ MRDD values were extracted from Martindale: The Extra Pharmacopoeia (1973, 1983,
 Maximum recommended daily dose measure, Dose_MRDD_mg, converted to millimoles:  Dose_MRDD_mmol = Dose_MRDD_mg / STRUCTURE_MolecularWeight. Note that this mg to mmol conversion in FDAMDD assumes that the compound dose in mg corresponds to the dose of the active ingredient in a formulation. '
       source_url: "http://www.epa.gov/ncct/dsstox/sdf_fdamdd.html"
       applicability_domain: "0.2"
-      unit: "milimol"
+      unit: "milimol/kg-bw/day"
 
   EPA Fathead Minnow Acute Toxicity (EPAFHM):
     -
