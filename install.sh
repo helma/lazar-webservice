@@ -20,25 +20,63 @@
 
 app_dir=`pwd`
 prefix=$app_dir/vendor
+bin_dir=$prefix/bin
+src_dir=$prefix/src
+
+export PATH=$PATH:$bin_dir
 
 # get and install ruby
-git clone http://opentox.org/git/ch/ruby.git vendor/src/ruby
-cd vendor/lib/ruby
+src=$src_dir/ruby
+git clone http://opentox.org/git/ch/ruby.git $src
+cd $src
 ./configure --prefix=$prefix
+make
 make install
-cd app_dir
-export PATH=$PATH:$app_dir/vendor/bin/
-alias ruby=$PATH:$app_dir/vendor/bin/ruby
+cd $app_dir
+
+alias ruby=$app_dir/vendor/bin/ruby
 
 # get and install rubygems
-export GEM_HOME=$prefix/gems
-git clone http://opentox.org/git/ch/rubygems.git vendor/src/rubygems
-cd vendor/lib/rubygems
-ruby setup.rb config --prefix=$prefix
-ruby setup.rb setup
-ruby setup.rb install
-alias gem=$PATH:$app_dir/vendor/bin/gem
+src=$src_dir/rubygems
+export GEM_HOME=$prefix
+git clone http://opentox.org/git/ch/rubygems.git $src
+cd $src
+$bin_dir/ruby setup.rb config --prefix=$prefix
+$bin_dir/ruby setup.rb setup
+$bin_dir/ruby setup.rb install
+cd $app_dir
 
-# get rake
-gem install rake -v "0.8.1"
+alias gem=$app_dir/vendor/bin/gem
+
+# get and install rake
+$bin_dir/gem install rake -v "0.8.1"
+export PATH=$PATH:$app_dir/vendor/gems/bin/
+alias rake=$app_dir/vendor/gems/bin/rake
+
+# get and install openbabel
+src=$src_dir/openbabel
+git clone http://opentox.org/git/ch/openbabel.git $src
+cd $src
+./configure --prefix=$prefix
+make
+make install
+cd $src/scripts/ruby
+ruby extconf.rb --with-openbabel-dir=$prefix
+make
+export DESTDIR=$prefix
+make install
+cd $app_dir
+
+# get and install R
+src=$src_dir/R
+git clone http://opentox.org/git/ch/R.git $src
+cd $src
+./configure --prefix=$prefix
+make
+make install
+export R_HOME=$prefix/
+# kernlab should be installed by lazar
+    #sh "export R_HOME=#{path}/lib/R && cd #{src} &&  #{path}/bin/R CMD INSTALL kernlab_0.9-7.tar.gz"
+cd $app_dir
+
 #rake update
