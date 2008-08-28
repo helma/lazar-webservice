@@ -1,22 +1,28 @@
 require 'yaml'
 
-desc "Update (or checkout) git plugins and data"
-task :update do
-  puts `git pull`
-  YAML::load(File.open("config/plugins.yml")).each do |plugin|
-    # update/create plugin
-    puts "updating #{plugin['url']}"
-    if File.directory?(plugin['path'])
-      puts `cd #{plugin['path']} && git pull`
-    else
-      puts `git clone #{plugin['url']} #{plugin['path']}`
+namespace :app do
+
+  desc "Install/update git plugins and data"
+  task :install do
+    sh "git pull"
+    YAML::load(File.open("config/plugins.yml")).each do |plugin|
+      # update/create plugin
+      puts "updating #{plugin['url']}"
+      sh "git clone #{plugin['url']} #{plugin['path']}"
+      if File.directory?(plugin['path'])
+        sh "cd #{plugin['path']} && git pull"
+      else
+      end
+      # get the correct tag
+      puts "switching to tag #{plugin['tag']} of  #{plugin['url']}" if plugin['tag']
+      sh "cd #{plugin['path']} && git checkout -b #{plugin['tag']} #{plugin['tag']}" if plugin['tag']
+      # reread environment to obtain all additional rake tasks
+      require "#{RAILS_ROOT}/config/environment.rb"
+      # run installation commands
+      sh "#{plugin['install']}" if plugin['install']
     end
-    # get the correct tag
-    puts "switching to tag #{plugin['tag']} of  #{plugin['url']}" if plugin['tag']
-    puts `cd #{plugin['path']} && git checkout -b #{plugin['tag']} #{plugin['tag']}` if plugin['tag']
-    # run installation commands
-    puts `#{plugin['install']}` if plugin['install']
   end
+
 end
 
 namespace :git do
