@@ -21,13 +21,13 @@ require "java.rb"
 
 Rails::Initializer.run do |config|
   config.plugins = [:engines, :opentox, :lazar, :all]
-  config.gem 'mechanize'
-  config.gem 'rjb'
-  config.gem 'rsruby'
-  config.gem 'sqlite3-ruby', :lib => "sqlite3"
-  config.gem 'statarray'
-  config.gem 'haml'
-  config.gem 'thin'
+  #config.gem 'mechanize'
+  #config.gem 'rjb'
+  #config.gem 'rsruby'
+  #config.gem 'sqlite3-ruby', :lib => "sqlite3"
+  #config.gem 'statarray'
+  #config.gem 'haml'
+  #config.gem 'thin'
   # Settings in config/environments/* take precedence those specified here
   #config.action_controller.session = { :session_key => "_myapp_session", :secret => "dsftrJKJdsipP" }
   

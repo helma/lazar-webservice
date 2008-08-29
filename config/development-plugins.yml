@@ -1,0 +1,52 @@
+# plugins
+# put the the plugins, that you are developing here. you will need shell access to push changes back
+-
+  url: "ssh://opentox.org/~ch/git/opentox-plugin.git"
+  path: vendor/plugins/opentox
+  install: "rake opentox:install"
+  # opentox installs also  openbabel, R and cdk
+-
+  url: "ssh://opentox.org/~ch/git/lazar-plugin.git"
+  path: vendor/plugins/lazar
+  install: "rake lazar:program:install"
+
+# external plugins, maybe they should be installed in the future by opentox plugin
+-
+  url: "git://github.com/lazyatom/engines.git"
+  path: vendor/plugins/engines
+  tag: "2.1.0"
+-
+  url: "git://github.com/activescaffold/active_scaffold.git"
+  path: vendor/plugins/activescaffold
+-
+  url: "git://github.com/activescaffold/file_column.git"
+  path: vendor/plugins/file_column
+
+-
+  url: "git://github.com/rails/exception_notification.git"
+  path: vendor/plugins/exception_notification
+
+# data and validation results
+- 
+  url: "ssh://opentox.org/~ch/git/cpdb-data.git"
+  path: public/data/cpdb
+  tag: 080429
+- 
+  url: "ssh://opentox.org/~ch/git/iris-data.git"
+  path: public/data/iris
+  tag: 080215
+- 
+  url: "ssh://opentox.org/~ch/git/kazius-data.git"
+  path: public/data/kazius
+- 
+  url: "ssh://opentox.org/~ch/git/fda-human-liver-data.git"
+  path: public/data/fda-human-liver
+- 
+  url: "ssh://opentox.org/~ch/git/fdamdd-data.git"
+  path: public/data/fdamdd
+  tag: 080215
+- 
+  url: "ssh://opentox.org/~ch/git/epafhm-data.git"
+  path: public/data/epafhm
+  tag: 080215
+

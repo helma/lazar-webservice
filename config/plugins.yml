@@ -4,7 +4,6 @@
   url: "http://opentox.org/git/ch/opentox-plugin.git"
   path: vendor/plugins/opentox
   install: "rake opentox:install"
-  # opentox installs also  openbabel, R and cdk
 -
   url: "http://opentox.org/git/ch/lazar-plugin.git"
   path: vendor/plugins/lazar
