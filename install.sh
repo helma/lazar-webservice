@@ -22,7 +22,7 @@
 
 if grep -q Debian /etc/issue
 then
-	sudo apt-get install sqlite3 libsqlite3-dev build-essential git-core wget java-jdk 
+	sudo apt-get install sqlite3 libsqlite3-dev build-essential git-core wget sun-java5-jdk 
 	sudo apt-get build-dep r-base
 	sudo apt-get build-dep openbabel
 elif grep -q Ubuntu /etc/issue
@@ -137,7 +137,7 @@ fi
 
 if [ ! $JAVA_HOME ]
 then
-	echo "Could not find a home directory of your Java installation. Please install Java and set the $JAVA_HOME variable."
+	echo "Could not find a home directory of your Java installation. Please install Java and set the JAVA_HOME variable."
 	exit
 fi
 
