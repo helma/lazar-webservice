@@ -1,4 +1,5 @@
 vendor/*
+!vendor/rails
 public/data
 log/*
 db/*sqlite3
