@@ -104,13 +104,9 @@ export R_HOME=$r_home
 git clone $git_option $git_url/R.git $src
 cd $src
 ./configure --prefix=$prefix 
-# fix location of bin dir
-cd src/scripts
-sed -i 's/= \.\./= \/../' Makefile
-cd $src
-# fix location of docs
+# fix installation dir
 make
-make install
+make DESTDIR=$prefix install
 
 # install kernlab
 src=$src_dir
@@ -138,8 +134,13 @@ export PATH=$PATH:$app_dir/vendor/gems/bin/
 
 if [ ! $JAVA_HOME ]
 then
-	#export JAVA_HOME=`find /usr -name "jvm"` | sed -n '1p'`
-	export JAVA_HOME=`locate -r ".*jvm/.*/bin/java$"|sed 's/\/bin\/java//'`
+	export JAVA_HOME=`locate -r ".*jvm/.*/bin/java$"|sed 's/\/bin\/java//'|grep -v jre`
+fi
+
+# if locate db does not exist
+if [ ! $JAVA_HOME ]
+then
+	export JAVA_HOME=`find / -wholename "/*/jvm/*/bin/java" 2>/dev/null|sed 's/\/bin\/java//'|grep -v jre`
 fi
 
 if [ ! $JAVA_HOME ]
@@ -158,6 +159,7 @@ cd vendor/rails && git checkout origin/2-1-stable
 cd $app_dir
 
 # external plugins
+mkdir -p $plugin_dir
 cd $plugin_dir
 git clone $git_option $git_url/engines.git 
 cd engines && git checkout 2.1.0 && cd ..
