@@ -1,5 +1,7 @@
 vendor/*
 !vendor/rails
+!vendor/plugins
+vendor/plugins/*
 public/data
 log/*
 db/*sqlite3

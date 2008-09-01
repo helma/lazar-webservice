@@ -92,18 +92,25 @@ make install
 topdir=`grep 'topdir =' Makefile|sed 's/topdir = //'`
 export RUBYLIB=$prefix/$topdir
 cd $app_dir
+# remove obsolete usr dir
+rm -rf vendor/usr
 
 # install R
 src=$src_dir/R
 r_home=$prefix/lib/R
 r_program=$bin_dir/R
+export R_HOME=$r_home
 
 git clone $git_option $git_url/R.git $src
 cd $src
-./configure --prefix=$prefix --enable-R-shlib
+./configure --prefix=$prefix 
+# fix location of bin dir
+cd src/scripts
+sed -i 's/= \.\./= \/../' Makefile
+cd $src
+# fix location of docs
 make
 make install
-export R_HOME=$r_home
 
 # install kernlab
 src=$src_dir
