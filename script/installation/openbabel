@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# install openbabel
+src=$src_dir/openbabel
+git_init $git_url/openbabel.git $src
+if [ ! -f Makefile ]
+then
+	./configure --prefix=$prefix
+fi
+make
+make install
+cd $src/scripts/ruby
+$ruby extconf.rb --with-openbabel-dir=$prefix --with-prefix=$prefix 
+make
+make install
+topdir=`grep 'topdir =' Makefile|sed 's/topdir = //'`
+export RUBYLIB=$prefix/$topdir
+cd $app_dir

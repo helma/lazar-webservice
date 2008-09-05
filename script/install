@@ -1,0 +1,64 @@
+#!/bin/bash
+#===============================================================================
+#
+#          FILE:  install
+# 
+#         USAGE:  ./install
+# 
+#   DESCRIPTION:  installs/updates an OpenTox application
+# 
+#       OPTIONS:  ---
+#  REQUIREMENTS:  ---
+#          BUGS:  ---
+#         NOTES:  ---
+#        AUTHOR:  helma@in-silico.de, 
+#       COMPANY: in silico toxicology 
+#       VERSION:  1.0
+#       CREATED:  08/27/2008 10:25:01 AM CEST
+#      REVISION:  ---
+#===============================================================================
+
+
+git_url=http://opentox.org/git/ch
+
+app_dir=`pwd`
+prefix=$app_dir/vendor
+bin_dir=$prefix/bin
+src_dir=$prefix/src
+gem_dir=$prefix/gems
+plugin_dir=$prefix/plugins
+r_home=$prefix/R
+
+export PATH=$PATH:$bin_dir
+export R_HOME=$r_home
+export GEM_HOME=$prefix
+export RUBY=$ruby
+
+ruby=$bin_dir/ruby
+gem=$bin_dir/gem
+r_program=$bin_dir/R
+rake=$bin_dir/rake
+
+mkdir -p $bin_dir
+mkdir -p $plugin_dir
+
+function git_init {
+	if [ ! -d $2 ]
+	then
+		git clone $1 $2
+	fi
+	cd $2
+	git pull
+}
+
+source script/installation/dependencies
+source script/installation/ruby
+source script/installation/rubygems
+source script/installation/rails
+source script/installation/gems
+source script/installation/plugins
+source script/installation/openbabel
+source script/installation/R
+
+#rake app:install
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# install R
+
+git_init $git_url/R.git $r_home
+./configure --without-blas --enable-BLAS-shlib --enable-R-shlib
+make
+cp $r_home/bin/R $r_program 
+
+# install kernlab
+cd $r_home
+if [ ! -f kernlab_0.9-7.tar.gz ]
+then
+	wget http://cran.r-project.org/src/contrib/kernlab_0.9-7.tar.gz
+fi
+$r_program CMD INSTALL kernlab_0.9-7.tar.gz
+cd $app_dir

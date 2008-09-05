@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# install gems
+# rake
+$gem install rake -v "0.8.1"
+
+$gem install sqlite3-ruby -v "1.2.2" 
+$gem install statarray -v "0.0.1"
+$gem install haml -v "2.1.0"
+$gem install thin -v "0.8.2"
+
+export PATH=$PATH:$app_dir/vendor/gems/bin/
+
+if [ ! $JAVA_HOME ]
+then
+	export JAVA_HOME=`locate -r ".*jvm/.*/bin/java$"|sed 's/\/bin\/java//'|grep -v jre`
+fi
+
+# if locate db does not exist
+if [ ! $JAVA_HOME ]
+then
+	export JAVA_HOME=`find / -wholename "/*/jvm/*/bin/java" 2>/dev/null|sed 's/\/bin\/java//'|grep -v jre`
+fi
+
+if [ ! $JAVA_HOME ]
+then
+	echo "Could not find a home directory of your Java installation. Please install Java and set the JAVA_HOME variable."
+	exit
+fi
+
+$gem install rjb -v "1.1.6" 
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$R_HOME/bin
+$gem install rsruby -v "0.5"  -- --with-R-dir=$R_HOME

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# install ruby
+src=$src_dir/ruby
+git_init $git_url/ruby.git $src
+if [ ! -f Makefile ]
+then
+	./configure --prefix=$prefix
+fi
+make
+make install
+cd $app_dir

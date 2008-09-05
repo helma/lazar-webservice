@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# install rubygems
+src=$src_dir/rubygems
+if [ ! -f $gem ]
+then
+	git_init $git_url/rubygems.git $src
+	$ruby setup.rb config --prefix=$prefix
+	$ruby setup.rb setup
+	$ruby setup.rb install
+	cd $app_dir
+else
+	$gem update --system -i $gem_dir
+fi

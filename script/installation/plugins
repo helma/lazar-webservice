@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# external plugins
+mkdir -p $plugin_dir
+cd $plugin_dir
+git_init $git_url/engines.git engines
+git checkout -b 2.1.0 && cd $plugin_dir
+git_init $git_url/active_scaffold.git active_scaffold
+cd $plugin_dir
+git_init $git_url/file_column.git file_column
+cd $plugin_dir
+git_init $git_url/exception_notification.git exception_notification
+cd $app_dir
+
+# create haml plugin
+haml --rails .
+
