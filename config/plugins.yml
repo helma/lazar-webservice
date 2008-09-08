@@ -7,7 +7,7 @@
 -
   url: "http://opentox.org/git/ch/lazar-plugin.git"
   path: vendor/plugins/lazar
-  install: "rake lazar:program:install"
+  install: "rake lazar:install"
 
 # data and validation results
 - 

@@ -10,10 +10,6 @@ RAILS_GEM_VERSION = '2.1'
 require File.join(File.dirname(__FILE__), 'boot')
 require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
-# load gems from vendor/gems
-#config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir| 
-#    File.directory?(lib = "#{dir}/lib") ? lib : dir
-#end
 
 # R and Java configuration files (for building gems)
 require "R.rb"
@@ -21,13 +17,10 @@ require "java.rb"
 
 Rails::Initializer.run do |config|
   config.plugins = [:engines, :opentox, :lazar, :all]
-  #config.gem 'mechanize'
-  #config.gem 'rjb'
-  #config.gem 'rsruby'
-  #config.gem 'sqlite3-ruby', :lib => "sqlite3"
-  #config.gem 'statarray'
-  #config.gem 'haml'
-  #config.gem 'thin'
+  # load gems from vendor/gems
+  config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir| 
+      File.directory?(lib = "#{dir}/lib") ? lib : dir
+  end
   # Settings in config/environments/* take precedence those specified here
   #config.action_controller.session = { :session_key => "_myapp_session", :secret => "dsftrJKJdsipP" }
   
@@ -73,8 +66,6 @@ end
 # end
 
 # Include your application configuration below
-require 'config/java.rb'
-require 'config/R.rb'
 
 ENV['CLASSPATH'] = "#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/:#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/cdk-1.0.1.jar"
 ENV['PATH'] = ENV['PATH'] + ":#{RAILS_ROOT}/vendor/bin"

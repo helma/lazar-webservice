@@ -14,21 +14,14 @@ namespace :app do
   end
 
   task :update do
-    #sh "git pull"
+    sh "git pull"
     plugins.each do |plugin|
       # update/create plugin
       puts "updating #{plugin['url']}"
-      if !File.directory?(plugin['path'])
-        sh "git clone #{plugin['url']} #{plugin['path']}"
-      end
+      sh "git clone #{plugin['url']} #{plugin['path']}" unless File.directory?(plugin['path'])
       sh "cd #{plugin['path']} && git pull"
       # get the correct tag
-      #puts "switching to tag #{plugin['tag']} of  #{plugin['url']}" if plugin['tag']
       #sh "cd #{plugin['path']} && git checkout -b #{plugin['tag']} " if plugin['tag']
-      # reread environment to obtain all additional rake tasks
-      #require "#{RAILS_ROOT}/config/environment.rb"
-      # run installation commands
-      #sh "#{plugin['install']}" if plugin['install']
     end
   end
 
