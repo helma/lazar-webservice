@@ -55,10 +55,10 @@ source script/installation/dependencies
 source script/installation/ruby
 source script/installation/rubygems
 source script/installation/rails
+source script/installation/R
+source script/installation/openbabel
 source script/installation/gems
 source script/installation/plugins
-source script/installation/openbabel
-source script/installation/R
 
 #rake app:install
 

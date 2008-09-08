@@ -77,6 +77,8 @@ require 'config/java.rb'
 require 'config/R.rb'
 
 ENV['CLASSPATH'] = "#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/:#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/cdk-1.0.1.jar"
+ENV['PATH'] = ENV['PATH'] + ":#{RAILS_ROOT}/vendor/bin"
+ENV['GEM_HOME'] = "#{RAILS_ROOT}/vendor/gems"
 
 #ExceptionNotifier.exception_recipients = %w(helma@in-silico.de)
 # defaults to exception.notifier@default.com

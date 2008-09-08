@@ -28,6 +28,7 @@ then
 	exit
 fi
 
+sed "2cENV['JAVA_HOME'] = '$JAVA_HOME'" config/java.rb
 $gem install rjb -v "1.1.6" 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$R_HOME/bin
 $gem install rsruby -v "0.5"  -- --with-R-dir=$R_HOME
