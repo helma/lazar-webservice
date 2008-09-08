@@ -60,5 +60,5 @@ source script/installation/openbabel
 source script/installation/gems
 source script/installation/plugins
 
-#rake app:install
+rake app:install
 
