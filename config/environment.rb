@@ -11,7 +11,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 require File.join(File.dirname(__FILE__), '../vendor/plugins/engines/boot')
 
 
-# R and Java configuration files (for building gems)
+# R and Java configuration files 
 require "R.rb"
 require "java.rb"
 
@@ -21,6 +21,8 @@ Rails::Initializer.run do |config|
   config.load_paths += Dir["#{RAILS_ROOT}/vendor/gems/**"].map do |dir| 
       File.directory?(lib = "#{dir}/lib") ? lib : dir
   end
+
+  config.load_paths += %W( #{RAILS_ROOT}/vendor/src/rubygems/lib )
   # Settings in config/environments/* take precedence those specified here
   #config.action_controller.session = { :session_key => "_myapp_session", :secret => "dsftrJKJdsipP" }
   
@@ -29,6 +31,8 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  config.load_paths += %W( #{RAILS_ROOT}/vendor/bin )
+  config.load_paths -= %W( /usr/local/ )
 
   # Force all environments to use the same logger level 
   # (by default production uses :info, the others :debug)
@@ -68,8 +72,10 @@ end
 # Include your application configuration below
 
 ENV['CLASSPATH'] = "#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/:#{RAILS_ROOT}/vendor/plugins/opentox/lib/java/cdk-1.0.1.jar"
-ENV['PATH'] = ENV['PATH'] + ":#{RAILS_ROOT}/vendor/bin"
-ENV['GEM_HOME'] = "#{RAILS_ROOT}/vendor/gems"
+ENV['PATH'] =  "#{RAILS_ROOT}/vendor/bin:" + ENV['PATH']
+ENV['GEM_HOME'] = "#{RAILS_ROOT}/vendor/lib/ruby/gems/1.8"
+ENV['GEM_PATH'] = "#{RAILS_ROOT}/vendor/lib/ruby/gems/1.8"
+ENV['RUBY'] = "#{RAILS_ROOT}/vendor/bin/ruby"
 
 #ExceptionNotifier.exception_recipients = %w(helma@in-silico.de)
 # defaults to exception.notifier@default.com

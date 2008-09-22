@@ -14,4 +14,4 @@ cp $r_home/bin/R $r_program
 #	wget http://cran.r-project.org/src/contrib/kernlab_0.9-7.tar.gz
 #fi
 #$r_program CMD INSTALL kernlab_0.9-7.tar.gz
-#cd $app_dir
+cd $app_dir

@@ -11,6 +11,7 @@ make
 make install
 cd $src/scripts/ruby
 $ruby extconf.rb --with-openbabel-dir=$prefix --with-prefix=$prefix 
+sed -i 's/Init_OpenBabel/Init_openbabel/' openbabel_ruby.cpp
 make
 make install
 topdir=`grep 'topdir =' Makefile|sed 's/topdir = //'`

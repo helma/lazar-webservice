@@ -31,8 +31,29 @@ r_home=$prefix/R
 
 export PATH=$PATH:$bin_dir
 export R_HOME=$r_home
-export GEM_HOME=$prefix
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$R_HOME/bin
+export GEM_HOME=$prefix/lib/ruby/gems/1.8
 export RUBY=$ruby
+
+# guess JAVA_HOME
+if [ ! $JAVA_HOME ]
+then
+	export JAVA_HOME=`locate -r ".*jvm/.*/bin/java$"|sed 's/\/bin\/java//'|grep -v jre`
+fi
+
+# if locate db does not exist
+if [ ! $JAVA_HOME ]
+then
+	export JAVA_HOME=`find / -wholename "/*/jvm/*/bin/java" 2>/dev/null|sed 's/\/bin\/java//'|grep -v jre`
+fi
+
+if [ ! $JAVA_HOME ]
+then
+	echo "Could not find a home directory of your Java installation. Please install Java and set the JAVA_HOME variable."
+	exit
+fi
+
+sed "2cENV['JAVA_HOME'] = '$JAVA_HOME'" config/java.rb
 
 ruby=$bin_dir/ruby
 gem=$bin_dir/gem
@@ -43,12 +64,14 @@ mkdir -p $bin_dir
 mkdir -p $plugin_dir
 
 function git_init {
+	dir=`pwd`
 	if [ ! -d $2 ]
 	then
 		git clone $1 $2
 	fi
 	cd $2
 	git pull
+	cd $dir
 }
 
 source script/installation/dependencies
