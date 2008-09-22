@@ -21,9 +21,15 @@ namespace :git do
   desc "Commit changes in all modified git repositories" 
   task :commit do
     if message = ENV['m']
-      sh "git commit -am '#{message}'"
+      begin
+        sh "git commit -am '#{message}'"
+      rescue
+      end
       YAML::load(File.open("config/plugins.yml")).each do |plugin|
-        sh "cd #{plugin['path']} && git commit -am '#{message}'"
+        begin
+          sh "cd #{plugin['path']} && git commit -am '#{message}'"
+        rescue
+        end
       end
     else
       puts "Please enter a message with rake:commit m=\"my message\""
