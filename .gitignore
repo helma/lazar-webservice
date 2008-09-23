@@ -1,3 +1,4 @@
+vendor/*
 public/data
 log/*
 db/*sqlite3
