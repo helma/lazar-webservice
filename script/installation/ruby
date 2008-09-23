@@ -3,6 +3,7 @@
 # install ruby
 src=$src_dir/ruby
 git_init $git_url/ruby.git $src
+cd $src
 if [ ! -f Makefile ]
 then
 	./configure --prefix=$prefix

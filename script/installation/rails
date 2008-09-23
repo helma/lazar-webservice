@@ -2,6 +2,6 @@
 
 # rails
 git_init $git_url/rails.git vendor/rails
-git checkout -b origin/2-1-stable
+cd vendor/rails && git checkout -b origin/2-1-stable
 cd $app_dir
 

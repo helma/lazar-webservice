@@ -3,6 +3,7 @@
 # install openbabel
 src=$src_dir/openbabel
 git_init $git_url/openbabel.git $src
+cd $src
 if [ ! -f Makefile ]
 then
 	./configure --prefix=$prefix

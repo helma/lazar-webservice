@@ -5,6 +5,7 @@ src=$src_dir/rubygems
 if [ ! -f $gem ]
 then
 	git_init $git_url/rubygems.git $src
+	cd $src
 	$ruby setup.rb config --prefix=$prefix
 	$ruby setup.rb setup
 	$ruby setup.rb install
