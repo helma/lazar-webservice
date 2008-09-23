@@ -71,17 +71,21 @@ function git_init {
 	fi
 	cd $2
 	git pull
+	if [ $3 ]
+	then
+		git checkout $3
+	fi
 	cd $dir
 }
 
-source script/installation/dependencies
-source script/installation/ruby
-source script/installation/rubygems
+#source script/installation/dependencies
+#source script/installation/ruby
+#source script/installation/rubygems
 source script/installation/rails
-source script/installation/R
-source script/installation/openbabel
-source script/installation/gems
-source script/installation/plugins
+#source script/installation/R
+#source script/installation/openbabel
+#source script/installation/gems
+#source script/installation/plugins
 
-rake app:install
+$rake app:install
 
