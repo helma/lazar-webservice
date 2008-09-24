@@ -3,11 +3,11 @@
 -
   url: "http://opentox.org/git/ch/opentox-plugin.git"
   path: vendor/plugins/opentox
-  install: "rake opentox:install"
+  install: "vendor/bin/rake opentox:install"
 -
   url: "http://opentox.org/git/ch/lazar-plugin.git"
   path: vendor/plugins/lazar
-  install: "rake lazar:install"
+  install: "vendor/bin/rake lazar:install"
 
 # data and validation results
 - 
