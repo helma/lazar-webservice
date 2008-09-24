@@ -13,5 +13,5 @@ then
 	sudo apt-get build-dep openbabel
 else
 	dist=`cat /etc/issue|sed 's/\\n \\l//'`
-	echo "Installation of dependency packages for $dist not (yet) implemented. Please install sqlite3 (with development libraries), git, java, gcc and fortran compiler with your package manager."
+	echo "Installation of dependency packages for $dist not (yet) implemented. Please install sqlite3 (with development libraries), git, wget, java, gcc and fortran compiler with your package manager."
 fi

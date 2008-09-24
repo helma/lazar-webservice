@@ -1,118 +1,58 @@
 = LAZAR-GUI
 
-This is an example implementation of the OpenTox framework using the <tt>lazar</tt>[lazar.in-silico.de] prediction system and public data from the DSSTOX[http://www.epa.gov/nheerl/dsstox/] project.
-
-Execute commands as superuser (root).
+This is an example GUI for the <tt>lazar</tt>[lazar.in-silico.de] prediction system and public data from the DSSTOX[http://www.epa.gov/nheerl/dsstox/] project.
 
 == Installation
 
 === Prerequisites
 
-Install from source or from your favorite package manager (e.g. <tt>apt/aptitude/synaptic</tt> on Debin/Ubuntu, <tt>yum</tt> on RedHat, <tt>yast</tt> on SuSE):
+- Git (http://git.or.cz) to get the source code 
 
-- Ruby (http://www.ruby.lang.org), including development package
-- RubyGems (http://www.rubygems.org)
+==== Debian and Ubuntu
+
+The installation script (see below) installs all prerequisites. You have to have sudo (http://www.sudo.ws/) installed and configured.
+
+==== Other distributions
+
+You will have to install the prerequisites with your favorite package manager. Please make shure to have
+
 - Java Development Kit (JDK) (http://java.sun.com)
-- Subversion (http://subversion.tigris.org)
 - SQLite3 (http://www.sqlite.org), including development package
-- R/Bioconductor (http://cran.r-project.org)
-- g++ (http://http://gcc.gnu.org)
-
-==== Redhat Enterprise Linux
-
-- Go to Applications->Add/Remove Software.
-- Under Development select: Ruby, Development Libraries, Development Tools
-- Install the packages: rdoc, sqlite, sqlite-devel
-- Install R from http://cran.r-project.org/bin/linux/redhat/ 
-- Get the Java Development Kit from http://java.sun.com/javase/downloads/index.jsp. Choose the self-extracting archive. Uncompress to a directory of your choice.
-- edit <tt>config/lazar/prediction.yml</tt> and substitute <tt>svn://www.in-silico.de/lazar/trunk/</tt> with <tt>svn://www.in-silico.de/lazar/branches/dist-gsl</tt>
-
-==== Debian
-
-<tt>~# apt-get install java-jdk sun-java6-jre sun-java6-plugin rubygems sun-java6-fonts libsqlite3-dev r-base r-base-dev rdoc sqlite3 sysutils build-essential</tt>
-
-==== Ubuntu
-
-<tt> ~# apt-get install sun-java6-jdk sun-java6-jre sun-java6-plugin rubygems sun-java6-fonts libsqlite3-dev r-base r-base-dev rdoc sqlite3 sysutils build-essential </tt>
-
-=== Install rake and mongrel 
-
-Use <tt>gem</tt> to install <tt>rake</tt> and <tt>mongrel</tt> (do not use gems from your package manager - they are frequently outdated):
-
-<tt>gem install -y rake mongrel</tt> (as root)
-
-Choose the ruby versions of the plugins.
+- Git (http://git.or.cz) 
+- Wget (http://www.gnu.org/software/wget/)
+- Basic development tools (including gcc (http://http://gcc.gnu.org) and fortran compilers)
+- GSL (http://www.gnu.org/software/gsl/)
 
 === Get the GUI source code
 
-- Create a directory for the project (e.g. in <tt>/var/www/lazar-gui</tt>)
-- Move into this directory (e.g. <tt>cd /var/www/lazar-gui</tt>)
-- Checkout the basic package with Subversion: <tt>svn co svn//www.in-silico.de/opentox/lazar-gui/ .</tt>
+- Clone the git repository <tt>git clone git://github.com/helma/lazar-gui.git</tt>
 
-=== Configuration
+=== Install programs, libraries, plugins and data
 
-- Edit <tt>config/java.rb</tt> and modify the Java path in ENV['JAVA_HOME']
-- Edit <tt>config/R.rb</tt> and modify the R path in ENV['R_HOME']
+- Move into the directory (e.g. <tt>cd /var/www/lazar-gui</tt>)
+- Run <tt>script/install</tt>
 
-=== Download plugins and data:
-
-<tt>rake svn:up</tt>
-
-=== Install the required gems
-
-<tt> ~# export JAVA_HOME="/usr/lib/jvm/java-6-sun" </tt>
-<tt> ~# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$JAVA_HOME/jre/lib/i386:$JAVA_HOME/jre/lib/i386/client </tt>
-<tt> ~# export R_HOME="/usr/lib/R" </tt>
-
-- Hint: add the above lines to your ~/.bashrc to make the changes permanent. Install gems (Choose the ruby versions of the plugins):
-
-- Redhat Enterprise Linux:
-  <tt> ~# gem install -y mechanize rake rino rjb statarray xml-simple </tt>
-  <tt> ~# gem install -y rsruby -- --with-R-dir=/usr/lib/R </tt>
-  <tt> ~# gem install -y sqlite3-ruby --version=1.0.0 </tt>
-- Other distributions:
-  <tt> ~# gem install -y mechanize rake rino rjb sqlite3-ruby statarray xml-simple </tt>
-  <tt> ~# gem install -y rsruby -- --with-R-dir=/usr/lib/R </tt>
-  If rsruby fails, try to specify the header directory also:
-  <tt> ~# gem install -y rsruby -- --with-R-dir=/usr/lib/R --with-R-include=/usr/share/R/include </tt>
-
-- <tt> ~# ln -s /usr/lib/R/lib/libRlapack.so /usr/lib/
-- <tt> ~# ln -s /usr/lib/R/lib/libR.so /usr/lib/
-
-
-To update already installed gems, do:
-<tt>rake gem:install</tt> (as root)
-
-=== Install OpenBabel and update the system configuration (all distributions):
-
-<tt>rake opentox:config_libs</tt> (as root)
-
-=== Compile and install programs and libraries:
-
-<tt>rake lazar-gui:install RAILS_ENV=production</tt>
-
-This task will download, compile and install additional libraries, programs and data, it will take some time to complete.
-Please send the last lines of the output to mailto:helma@in-silico.de if the task does not complete sucessfully.
+This will download and install further programs, libraries, plugins and data that are required to run the GUI. The initial installation is quite time consuming, because we have to compile programs and libraries to obtain platform independence.
 
 === Start the <tt>lazar</tt> daemon
 
-<tt>rake lazar:start RAILS_ENV=production</tt>
+<tt>vendor/bin/rake lazar:daemon:start RAILS_ENV=production</tt>
 
 === Start the GUI server
 
-<tt>mongrel_rails start -d -p 8000 -e production</tt>
+<tt>vendor/bin/thin start -d -p 8000 -e production</tt>
 
 The GUI will now be available at port 8000 of your machine. You can access it from any browser by pointing it to <tt>http://yourserver:8000</tt>. You will have to enable Java and Javascript in the client browsers to use the molecular editor.
 
-If performance is an issue, you can use Mongrel (http://mongrel.rubyforge.org) in conjunction with a traditional webserver (e.g. Apache) to serve the GUI. You can find installation instructions here[http://mongrel.rubyforge.org/wiki/Apache].
+If performance is an issue, you can use Thin (http://code.macournoyer.com/thin/) or Mongrel (http://mongrel.rubyforge.org) in conjunction with a traditional webserver (e.g. Apache) to serve the GUI. You can find installation instructions here[http://mongrel.rubyforge.org/wiki/Apache].
 
 == Upgrading
 
-- Stop the GUI server: <tt>mongrel_rails stop</tt>
-- Stop the lazar daemon: <tt>rake lazar:stop RAILS_ENV=production</tt>
-- Get the update: <tt>rake svn:up</tt>
-- Rerun the installation scripts: <tt>rake lazar-gui:install RAILS_ENV=production</tt> 
-- Start the <tt>lazar</tt> daemon: <tt>rake lazar:start RAILS_ENV=production</tt>
-- Start the GUI server: <tt>mongrel_rails start -d -p 8000 -e production</tt>
+- Stop the GUI server: <tt>vendor/bin/thin stop</tt>
+- Stop the lazar daemon: <tt>vendor/bin/rake lazar:daemon:stop RAILS_ENV=production</tt>
+- Get the update: <tt>git pull</tt>
+- Rerun the installation scripts: <tt>script/install</tt> 
+- Start the <tt>lazar</tt> daemon: <tt>vendor/bin/rake lazar:daemon:start RAILS_ENV=production</tt>
+- Start the GUI server: <tt>vendor/bin/thin start -d -p 8000 -e production</tt>
 
 
