@@ -1,5 +1,5 @@
 # git url for the source code of the prediction server
-url: "http://opentox.org/git/ch/lazar-core.git"
+url: "git://github.com/helma/lazar-core.git"
 # list of databases for the prediction server (under public/data)
 data:
   Carcinogenicity:

@@ -10,5 +10,4 @@ git_init $git_url/exception_notification.git exception_notification
 cd $app_dir
 
 # create haml plugin
-haml --rails .
-
+vendor/bin/haml --rails .

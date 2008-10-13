@@ -1,0 +1,4 @@
+#!/bin/sh
+
+vendor/bin/rake lazar:daemon:start
+vendor/bin/thin start

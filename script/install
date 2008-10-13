@@ -35,6 +35,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$R_HOME/bin
 export GEM_HOME=$prefix/lib/ruby/gems/1.8
 export RUBY=$ruby
 
+source script/installation/dependencies
+
 # guess JAVA_HOME
 if [ ! $JAVA_HOME ]
 then
@@ -78,7 +80,6 @@ function git_init {
 	cd $dir
 }
 
-source script/installation/dependencies
 source script/installation/ruby
 source script/installation/rubygems
 source script/installation/rails

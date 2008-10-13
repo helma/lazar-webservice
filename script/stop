@@ -1,0 +1,4 @@
+#!/bin/sh
+
+vendor/bin/thin stop
+vendor/bin/rake lazar:daemon:stop
