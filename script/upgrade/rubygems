@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# update rubygems
+$gem update --system -i $gem_dir

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# external plugins
+mkdir -p $plugin_dir
+cd $plugin_dir
+cd engines && git pull
+cd active_scaffold && git pull
+cd file_column && git pull
+cd exception_notification && git pull
+cd $app_dir
+
+# create haml plugin
+vendor/bin/haml --rails .

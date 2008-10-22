@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# guess JAVA_HOME
+if [ ! $JAVA_HOME ]
+then
+	export JAVA_HOME=`locate -r ".*jvm/.*/bin/java$"|sed 's/\/bin\/java//'|grep -v jre`
+fi
+
+# if locate db does not exist
+if [ ! $JAVA_HOME ]
+then
+	export JAVA_HOME=`find / -wholename "/*/jvm/*/bin/java" 2>/dev/null|sed 's/\/bin\/java//'|grep -v jre`
+fi
+
+if [ ! $JAVA_HOME ]
+then
+	echo "Could not find a home directory of your Java installation. Please install Java and set the JAVA_HOME variable."
+	exit
+fi
+
+sed "2cENV['JAVA_HOME'] = '$JAVA_HOME'" config/java.rb
+

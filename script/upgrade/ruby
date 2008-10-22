@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# install ruby
+src=$src_dir/ruby
+cd $src
+git pull
+./configure --prefix=$prefix
+make install
+cd $app_dir
