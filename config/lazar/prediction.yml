@@ -130,19 +130,19 @@ data:
       endpoint_definition: ""
       source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
       
-#  "FDA Maximum Recommended Daily Dose (FDAMDD)":
-#    -
-#      endpoint: Maximum recommended daily dose
-#      directory: public/data/fdamdd/dose_mrdd_mmol
-#      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#Dose_MRDD_mmol"
-#      endpoint_definition: 'Maximum recommended daily dose (or maximum recommended therapeutic dose) values were determined from pharmaceutical clinical trials that employed an oral route of exposure and daily treatments, usually for 3-12 months. Drugs were given as single or divided dose treatment regimens to achieve desired pharmacological effects. Roughly 5% of the pharmaceuticals in the FDAMDD data filewere antineoplastics and anesthetics and were administered intravenously and/or intramuscularly. When separate MRDDs were reported for different routes of exposure, only the oral MRDD was included in the data file and only MRDD values reported for the average adult patient were used. Pharmaceuticals that are administered orally are usually tested over a limited range of doses and have MRDDs reported as mg/day. The mg/day unit was converted to mg/kg-body weight (bw)/day based upon an average adult weighing 60 kg. In contrast, the dose unit for most antineoplastic drug MRDDs is reported as mg/m 2 which was converted to mg/kg-bw/day using the formula mg/kg-bw/day = mg/m 2/37 for an average adult. Additionally, a few drugs had MRDDs reported in parts per million (ppm) which were converted to mg/kg-bw/day on the basis that 1000 ppm equals 25 mg/kg-bw/day for an average 60 kg adult. These MRDD values were the basis of the QSAR analysis in (Matthews et al, 2004).<br/>
-#
-#MRDD values were extracted from Martindale: The Extra Pharmacopoeia (1973, 1983, and 1993) and The Physicians Desk Reference (1995 and 1999).<br/> 
-#
-#Maximum recommended daily dose measure, Dose_MRDD_mg, converted to millimoles:  Dose_MRDD_mmol = Dose_MRDD_mg / STRUCTURE_MolecularWeight. Note that this mg to mmol conversion in FDAMDD assumes that the compound dose in mg corresponds to the dose of the active ingredient in a formulation. '
-#      source_url: "http://www.epa.gov/ncct/dsstox/sdf_fdamdd.html"
-#      applicability_domain: "0.2"
-#      unit: "milimol/kg-bw/day"
+  "FDA Maximum Recommended Daily Dose (FDAMDD)":
+    -
+      endpoint: Maximum recommended daily dose
+      directory: public/data/fdamdd/dose_mrdd_mmol
+      endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#Dose_MRDD_mmol"
+      endpoint_definition: 'Maximum recommended daily dose (or maximum recommended therapeutic dose) values were determined from pharmaceutical clinical trials that employed an oral route of exposure and daily treatments, usually for 3-12 months. Drugs were given as single or divided dose treatment regimens to achieve desired pharmacological effects. Roughly 5% of the pharmaceuticals in the FDAMDD data filewere antineoplastics and anesthetics and were administered intravenously and/or intramuscularly. When separate MRDDs were reported for different routes of exposure, only the oral MRDD was included in the data file and only MRDD values reported for the average adult patient were used. Pharmaceuticals that are administered orally are usually tested over a limited range of doses and have MRDDs reported as mg/day. The mg/day unit was converted to mg/kg-body weight (bw)/day based upon an average adult weighing 60 kg. In contrast, the dose unit for most antineoplastic drug MRDDs is reported as mg/m 2 which was converted to mg/kg-bw/day using the formula mg/kg-bw/day = mg/m 2/37 for an average adult. Additionally, a few drugs had MRDDs reported in parts per million (ppm) which were converted to mg/kg-bw/day on the basis that 1000 ppm equals 25 mg/kg-bw/day for an average 60 kg adult. These MRDD values were the basis of the QSAR analysis in (Matthews et al, 2004).<br/>
+
+MRDD values were extracted from Martindale: The Extra Pharmacopoeia (1973, 1983, and 1993) and The Physicians Desk Reference (1995 and 1999).<br/> 
+
+Maximum recommended daily dose measure, Dose_MRDD_mg, converted to millimoles:  Dose_MRDD_mmol = Dose_MRDD_mg / STRUCTURE_MolecularWeight. Note that this mg to mmol conversion in FDAMDD assumes that the compound dose in mg corresponds to the dose of the active ingredient in a formulation. '
+      source_url: "http://www.epa.gov/ncct/dsstox/sdf_fdamdd.html"
+      applicability_domain: "0.2"
+      unit: "milimol/kg-bw/day"
 
   EPA Fathead Minnow Acute Toxicity (EPAFHM):
     -
