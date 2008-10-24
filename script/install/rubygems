@@ -1,10 +1,5 @@
 #!/bin/bash
 
 # install rubygems
-src=$src_dir/rubygems
-git clone $git_url/rubygems.git $src
-cd $src
-$ruby setup.rb config --prefix=$prefix
-$ruby setup.rb setup
-$ruby setup.rb install
-cd $app_dir
+cd $src_dir/rubygems
+$ruby setup.rb --prefix=$prefix --no-rdoc --no-ri

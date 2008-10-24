@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # install ruby
-src=$src_dir/ruby
-git clone $git_url/ruby.git $src
-cd $src
-./configure --prefix=$prefix
-make install
-cd $app_dir
+patchlevel=`echo $version | cut -f2 -d 'p'`
+rubyversion=`echo $version | cut -f1 -d '-'`
+if ! $ruby --version | grep -w $rubyversion | grep -w $patchlevel
+then
+	./configure --prefix=$prefix
+	make install
+fi

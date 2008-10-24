@@ -3,10 +3,10 @@
 # external plugins
 mkdir -p $plugin_dir
 cd $plugin_dir
-cd engines && git pull
-cd active_scaffold && git pull
-cd file_column && git pull
-cd exception_notification && git pull
+git --git-dir=engines pull
+git --git-dir=active_scaffold pull
+git --git-dir=file_column pull
+git --git-dir=exception_notification pull
 cd $app_dir
 
 # create haml plugin

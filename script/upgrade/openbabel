@@ -1,23 +1,13 @@
 #!/bin/bash
 
 # install openbabel
-src=$src_dir/openbabel
-cd $src
-git branch current
-git pull
-git diff --quiet current
-if [ "$?" -ne "0" ]
-then
-	./configure --prefix=$prefix
-	make install
+./configure --prefix=$prefix
+make install
 
-	# install ruby bindings
-	cd $src/scripts/ruby
-	$ruby extconf.rb --with-openbabel-dir=$prefix --with-prefix=$prefix 
-	sed -i 's/Init_OpenBabel/Init_openbabel/' openbabel_ruby.cpp
-	make install
-	topdir=`grep 'topdir =' Makefile|sed 's/topdir = //'`
-	export RUBYLIB=$prefix/$topdir
-fi
-git delete -D  current
-cd $app_dir
+# install ruby bindings
+cd $src/scripts/ruby
+$ruby extconf.rb --with-openbabel-dir=$prefix --with-prefix=$prefix 
+sed -i 's/Init_OpenBabel/Init_openbabel/' openbabel_ruby.cpp
+make install
+topdir=`grep 'topdir =' Makefile|sed 's/topdir = //'`
+export RUBYLIB=$prefix/$topdir

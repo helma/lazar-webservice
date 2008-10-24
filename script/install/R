@@ -1,10 +1,9 @@
 #!/bin/bash
 
 # install R
-
-git clone $git_url/R.git $r_home
-cd $r_home
-./configure --without-blas --enable-BLAS-shlib --enable-R-shlib
-make
-cp $r_home/bin/R $r_program 
-cd $app_dir
+if ! $r_program --version | grep $version
+then
+	./configure --without-blas --enable-BLAS-shlib --enable-R-shlib --without-tcltk --without-x
+	make
+	cp $r_home/bin/R $r_program 
+fi

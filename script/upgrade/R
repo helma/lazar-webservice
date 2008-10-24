@@ -1,16 +1,6 @@
 #!/bin/bash
 
 # upgrade R
-
-cd $r_home
-git branch current
-git pull
-git diff --quiet current
-if [ "$?" -ne "0" ]
-then
-	./configure --without-blas --enable-BLAS-shlib --enable-R-shlib
-	make
-	cp $r_home/bin/R $r_program 
-fi
-git delete -D  current
-cd $app_dir
+./configure --without-blas --enable-BLAS-shlib --enable-R-shlib
+make
+cp $r_home/bin/R $r_program 
