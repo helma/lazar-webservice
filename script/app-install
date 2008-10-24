@@ -14,6 +14,7 @@ then
 	exit 
 fi
 
+export RAILS_ROOT=`pwd`
 source script/install/variables
 git_url=http://opentox.org/git/ch
 
@@ -46,7 +47,7 @@ fi
 # get the latest version
 $gem update --system
 
-git_install git://github.com/rails/rails.git 2-1-stable vendor/rails                                # rails
+git_install git://github.com/rails/rails.git 2-1-stable vendor/rails              # rails
 git_install $git_url/R.git                   2.7.1      $r_home            script/install/R         # R
 git_install $git_url/openbabel.git           2.2.0      $src_dir/openbabel script/install/openbabel # openbabel
 
@@ -75,8 +76,8 @@ git_install $git_url/exception_notification.git rails-2-1-stable $plugin_dir/exc
 
 # install opentox plugins
 #						origin                                             version     destination         post installation hook
-git_install git://github.com/helma/opentox-plugin.git          development $plugin_dir/opentox $rake opentox:install
-git_install git://github.com/helma/lazar-plugin.git            development $plugin_dir/lazar   $rake lazar:install
+git_install git://github.com/helma/opentox-plugin.git          development $plugin_dir/opentox script/install/opentox
+git_install git://github.com/helma/lazar-plugin.git            development $plugin_dir/lazar   script/install/lazar
 
 # data and validation results
 git_install http://opentox.org/git/ch/cpdb-data.git            080429     $data_dir/cpdb
