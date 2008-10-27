@@ -6,5 +6,6 @@ rubyversion=`echo $version | cut -f1 -d '-'`
 if ! $ruby --version | grep -w $rubyversion | grep -w $patchlevel
 then
 	./configure --prefix=$prefix
+  make
 	make install
 fi

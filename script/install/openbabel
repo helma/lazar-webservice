@@ -7,6 +7,7 @@ src=$src_dir/openbabel
 if ! ls -d $prefix/lib/openbabel/$version
 then
 	./configure --prefix=$prefix
+	make
 	make install
 
 	# install ruby bindings
@@ -14,6 +15,7 @@ then
 	$ruby extconf.rb --with-openbabel-dir=$prefix --with-prefix=$prefix 
 	# fix wrong cases
 	sed -i 's/Init_OpenBabel/Init_openbabel/' openbabel_ruby.cpp
+	make
 	make install
 	topdir=`grep 'topdir =' Makefile|sed 's/topdir = //'`
 	export RUBYLIB=$prefix/$topdir
