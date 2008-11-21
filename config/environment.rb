@@ -24,7 +24,7 @@ Rails::Initializer.run do |config|
 
   config.load_paths += %W( #{RAILS_ROOT}/vendor/src/rubygems/lib )
   # Settings in config/environments/* take precedence those specified here
-  #config.action_controller.session = { :session_key => "_myapp_session", :secret => "dsftrJKJdsipP" }
+  config.action_controller.session = { :session_key => "_myapp_session", :secret => "5088f3e9d90958b1a8d2f5832f00e8ed" }
   
   # Skip frameworks you're not going to use (only works if using vendor/rails)
   # config.frameworks -= [ :action_web_service, :action_mailer ]
@@ -40,8 +40,7 @@ Rails::Initializer.run do |config|
 
   # Use the database for sessions instead of the file system
   # (create the session table with 'rake db:sessions:create')
-  # config.action_controller.session_store = :active_record_store
-  config.action_controller.session_store = :memory_store
+  config.action_controller.session_store = :active_record_store
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper, 
@@ -57,7 +56,7 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
 
 	#config.action_mailer.delivery_method = :smtp
-	config.action_mailer.raise_delivery_errors = true
+	#config.action_mailer.raise_delivery_errors = true
 end
 
 # Add new inflection rules using the following format 
