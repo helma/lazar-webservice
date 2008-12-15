@@ -1,10 +1,17 @@
-class LazarClassifier
+include Socket::Constants
 
-  # a recent bug in rails forces us to include in the class definition
-  include Socket::Constants
+class Lazar
 
   def initialize(endpoint_id)
-    @port = LazarModule.find(endpoint_id).port
+    m = LazarModule.find(endpoint_id)
+    @port = m.port
+    @p = nil
+    case m.prediction_type
+    when "classification"
+      @p = 'p_chisq'
+    when "regression"
+      @p = 'p_ks'
+    end
   end
 
   def predict(smiles)
@@ -13,6 +20,7 @@ class LazarClassifier
     socket.connect( sockaddr )
     socket.write( smiles )
     @prediction = YAML::load(socket.read)
+    puts @prediction.to_yaml
   end
 
   def to_xml
@@ -25,16 +33,16 @@ class LazarClassifier
       @prediction['features'].each do |f|
         case f['property']
         when 'activating'
-        activating_features << { :smarts => f['smarts'], :p => f['p_chisq'] }
+        activating_features << { :smarts => f['smarts'], :p => f[@p] }
         when 'deactivating'
-        deactivating_features << { :smarts => f['smarts'], :p => f['p_chisq'] }
+        deactivating_features << { :smarts => f['smarts'], :p => f[@p] }
         end
       end
     end
 
     if @prediction['unknown_features']
       @prediction['unknown_features'].each do |f|
-        unknown_features << { :smarts => f['smarts'] }
+        unknown_features << { :smarts => f }
       end
     end
 
@@ -61,25 +69,30 @@ class LazarClassifier
       xml.features do
         xml.activating do
           activating_features.sort{|a,b| b[:p] <=> a[:p]}.each do |f|
-            xml.smarts f[:smarts]
-            xml.probability f[:p]
+            xml.feature do
+              xml.smarts f[:smarts]
+              xml.probability f[:p]
+            end
           end
         end
         xml.deactivating do
-          deactivating_features.sort{|a,b| b[:p] <=> a[:p].sort}.each do |f|
-            xml.smarts f[:smarts]
-            xml.probability f[:p]
+          deactivating_features.sort{|a,b| b[:p] <=> a[:p]}.each do |f|
+            xml.feature do
+              xml.smarts f[:smarts]
+              xml.probability f[:p]
+            end
           end
         end
         xml.unknown do
           unknown_features.each do |f|
-            xml.smarts f[:smarts]
+            xml.feature do
+              xml.smarts f[:smarts]
+            end
           end
         end
       end
     end
 
   end
-
 
 end

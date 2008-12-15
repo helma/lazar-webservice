@@ -15,12 +15,8 @@ class LazarController < ApplicationController
       if !params[:smiles].blank? 
         begin
           Obmol.new(params[:smiles]) # invalid smiles should fail here
-          if @module[:prediction_type] == "classification"
-            @lazar = LazarClassifier.new(@module.id)
-          elsif @module[:prediction_type] == "regression"
-            @lazar = LazarRegression.new(params[:endpoint_id])
-          end
           begin
+            @lazar = Lazar.new(@module.id)
             @lazar.predict(params[:smiles])
           rescue
             errors[:error] = "lazar prediction for smiles '" + params[:smiles] + "' failed."
