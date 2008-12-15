@@ -35,27 +35,37 @@ else
 	git_install $url   $branch $app_dir
 fi
 
-# install programs and libraries
-#						origin                           version    destination        post installation hook
-git_install $git_url/ruby.git                1.8.6-p287 $src_dir/ruby      script/install/ruby      # ruby
+if echo $ruby | grep $bin_dir
+then
+	echo "Ruby not found. Installing ruby in vendor directory"
+	# install programs and libraries
+	#						origin                           version    destination        post installation hook
+	git_install $git_url/ruby.git                1.8.6-p287 $src_dir/ruby      script/install/ruby      # ruby
+fi
 
 # rubygems
-if [ ! -f $gem ]
+if echo $gem | grep $bin_dir
 then
-git_install $git_url/rubygems.git            1.2.0      $src_dir/rubygems  script/install/rubygems  
+	echo "Rubygems not found. Installing gem in vendor directory"
+	if [ ! -f $gem ]
+	then
+		git_install $git_url/rubygems.git            1.2.0      $src_dir/rubygems  script/install/rubygems  
+	fi
+	# get the latest version
+	$gem update --system
 fi
-# get the latest version
-$gem update --system
 
-git_install $git_url/rails.git               2-1-stable vendor/rails              # rails
 git_install $git_url/R.git                   2.7.1      $r_home            script/install/R         # R
 git_install $git_url/openbabel.git           2.2.0      $src_dir/openbabel script/install/openbabel # openbabel
 
 $ruby config/java.rb # read JAVA_HOME 
 
+echo "Installing gems"
+
 # install gems
 #           gem          version options
 gem_install rake         0.8.3 
+gem_install rails        2.1.2 
 gem_install sqlite3-ruby 1.2.4
 gem_install statarray    0.0.1
 gem_install haml         2.0.3

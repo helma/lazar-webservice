@@ -4,13 +4,23 @@ app_dir=`pwd`
 prefix=$app_dir/vendor
 bin_dir=$prefix/bin
 src_dir=$prefix/src
-gem_dir=$prefix/lib/ruby/gems/1.8/gems
+gem_dir=$prefix/lib/ruby/gems/1.8/
 plugin_dir=$prefix/plugins
 data_dir=$app_dir/public/data
 r_home=$prefix/R
 
-ruby=$bin_dir/ruby
-gem=$bin_dir/gem
+ruby=`which ruby`
+if [ ! -x $ruby ]
+then
+	ruby=$bin_dir/ruby
+fi
+
+gem=`which gem`
+if [ ! -x $gem ]
+then
+	gem=$bin_dir/gem
+fi
+
 r_program=$bin_dir/R
 rake=$bin_dir/rake
 
@@ -59,9 +69,16 @@ function gem_install {
 	# $2: version
 	# $3: options
 
+	if [ ! -d $gem_dir ]
+	then
+		echo "Creating $gem_dir"
+		mkdir -p $gem_dir
+	fi
+
 	if [ ! -d $gem_dir/$1-$2 ]
 	then
-		$gem install --no-rdoc --no-ri --bindir=$bin_dir $1 -v $2 $3
+		echo "Installing $1"
+		$gem install $1 --no-rdoc --no-ri --bindir=$bin_dir -i $gem_dir -v $2 $3
 	fi
 
 }

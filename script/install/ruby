@@ -5,7 +5,7 @@ patchlevel=`echo $version | cut -f2 -d 'p'`
 rubyversion=`echo $version | cut -f1 -d '-'`
 if ! $ruby --version | grep -w $rubyversion | grep -w $patchlevel
 then
-	./configure --prefix=$prefix
+	./configure --enable-shared --prefix=$prefix
   make
 	make install
 fi
