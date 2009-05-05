@@ -1,25 +1,28 @@
-include Socket::Constants
+class LazarServer
 
-class Lazar
+require 'socket'                # Get sockets from stdlib
 
-  def initialize(endpoint_id)
-    m = LazarModule.find(endpoint_id)
-    @port = m.port
-    @p = nil
-    case m.prediction_type
-    when "classification"
-      @p = 'p_chisq'
-    when "regression"
-      @p = 'p_ks'
-    end
+server = TCPServer.open(2000)   # Socket to listen on port 2000
+loop {                          # Servers run forever
+    Thread.start(server.accept) do |client|
+      client.puts(Time.now.ctime) # Send the time to the client
+        client.puts "Closing the connection. Bye!"
+            client.close                # Disconnect from the client
+              end
+}
+
+
+  def initialize
+    Dir.chdir("#{RAILS_ROOT}/lib/lazar") #necessary for unknown reasons
+    Endpoint.find(:all).each do |endpoint|
+      basename = "#{RAILS_ROOT}/#{endpoint.path}/"
+      @endpoint =  Lazar::ClassificationPredictor.new("#{basename}.smi", "#{basename}.class", "#{basename}.linfrag", "data/elements.txt", Lazar::getStringOut)
   end
 
   def predict(smiles)
-    socket = Socket.new( AF_INET, SOCK_STREAM, 0 )
-    sockaddr = Socket.pack_sockaddr_in( @port, 'localhost' )
-    socket.connect( sockaddr )
-    socket.write( smiles )
-    @prediction = YAML::load(socket.read)
+    Dir.chdir("#{RAILS_ROOT}/lib/lazar") #necessary for unknown reasons
+    @endpoint.predict_smi(smiles)
+    @prediction = YAML::load(@endpoint.get_yaml)
     puts @prediction.to_yaml
   end
 
@@ -56,13 +59,15 @@ class Lazar
       xml.known_fraction @prediction['known_fraction']
       xml.database_activity @prediction['db_activity']
       xml.neighbors do 
-        @prediction['neighbors'].sort{|a,b| b['similarity'] <=> a['similarity']}.each do |n|
-          xml.neighbor do
-            xml.similarity n['similarity']
-            xml.id n['id']
-            xml.smiles n['smiles']
-            xml.inchi n['inchi']
-            xml.activity n['activity']
+        if @prediction['neighbors']
+          @prediction['neighbors'].sort{|a,b| b['similarity'] <=> a['similarity']}.each do |n|
+            xml.neighbor do
+              xml.similarity n['similarity']
+              xml.id n['id']
+              xml.smiles n['smiles']
+              xml.inchi n['inchi']
+              xml.activity n['activity']
+            end
           end
         end
       end

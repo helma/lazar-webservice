@@ -1,6 +1,6 @@
 $: << File.expand_path(File.dirname(__FILE__))
 require 'yaml'
-require 'R.rb'
+#require 'R.rb'
 
 
 namespace :lazar do

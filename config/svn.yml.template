@@ -1,6 +1,0 @@
-data:
-  - "svn://www.in-silico.de/opentox/data/cpdb071025"
-
-plugins:
-  - "svn://www.in-silico.de/opentox/plugins/opentox"
-  - "svn://www.in-silico.de/opentox/plugins/lazar"

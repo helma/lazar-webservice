@@ -11,11 +11,16 @@ ActionController::Routing::Routes.draw do |map|
 
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
-  map.connect '', :controller => "lazar", :action => "index"
+  #map.connect '', :controller => "lazar", :action => "index"
 
-  map.connect ':category/:endpoint/:action/:smiles', :controller => "lazar"
-  map.connect ':category/:endpoint/:smiles', :controller => "lazar", :action => "show"
-  map.connect ':category/:action', :controller => "lazar"
+  #map.connect ':category/:endpoint/:action/:smiles', :controller => "lazar"
+  #map.resources :endpoint
+  #map.connect ':endpoint', :controller => "endpoints", :action => "show"
+  map.connect 'endpoints', :controller => "endpoints", :action => "index"
+  map.connect 'categories', :controller => "categories", :action => "index"
+  map.connect ':category/:database/:endpoint', :controller => "endpoints", :action => "show"
+  map.connect ':category/:database/:endpoint/loo', :controller => "endpoints", :action => "loo"
+  #map.connect ':category/:action', :controller => "lazar"
 
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'

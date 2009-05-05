@@ -1,0 +1,10 @@
+    xml = Builder::XmlMarkup.new
+    xml.instruct!
+    xml.endpoints do
+      @endpoints.each do |e|
+        xml.name e.name
+        xml.category e.category.name
+        xml.uri url_for :controller => e.name
+      end
+    end
+

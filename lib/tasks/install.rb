@@ -1,3 +1,4 @@
+=begin
 desc "Install the complete lazar system"
 task :install => :compile
 
@@ -28,3 +29,4 @@ desc "Compile lazar"
 task :compile => ["R:install:kernlab", :checkout] do
   sh "cd #{@lazar_dir}; make"
 end
+=end
