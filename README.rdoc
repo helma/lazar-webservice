@@ -4,14 +4,12 @@ This is an example webservice for the <tt>lazar</tt>[lazar.in-silico.de] predict
 
 == REST API
 
-Description							Method	URI																	Parameters
+Description						Method	URI							Parameters
 
-List all endpoints			GET 		/endpoints
-List all categories			GET 		/categories
-Endpoint definition			GET 		/{category}/{database}/{endpoint}	
-Predict smiles					GET 		/{category}/{database}/{endpoint}		smiles
-Create a model 					POST 		/{category}/{database}/{endpoint}		structure_file, activity_file 		
-Update a model 					PUT 		/{category}/{database}/{endpoint}		structure_file, activity_file
+List all models				GET 		/models
+Predict smiles				GET 		/models/{id}		smiles
+Create a model 				POST 		/models					structure_file, activity_file 		
+Update a model 				PUT 		/models/{id}		structure_file, activity_file
 
 == Installation
 

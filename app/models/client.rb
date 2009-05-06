@@ -2,8 +2,8 @@ require 'socket'      # Sockets are in standard library
 
 class Client
 
-  def initialize(port,smiles)
-    socket = TCPSocket.open("localhost",port)
+  def initialize(model,smiles)
+    socket = TCPSocket.open("localhost",model.port)
     socket.puts smiles
     result = socket.read
     puts result

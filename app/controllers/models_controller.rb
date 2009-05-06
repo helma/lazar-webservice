@@ -9,7 +9,7 @@ class ModelsController < ApplicationController
     if params[:smiles] 
       m = Model.find(params[:id])
       if m.ready
-        xml = Client.new(m.port,params[:smiles])
+        xml = Client.new(m,params[:smiles])
       else
         xml = "Model #{m.name} under construction"
       end

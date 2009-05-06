@@ -1,8 +1,0 @@
-#!/bin/bash
-
-# rails
-#git_init "--depth=1 git://github.com/rails/rails.git" vendor/rails
-git --git-dir=vendor/rails pull #$git_url/rails.git origin/2-1-stable 
-git checkout origin/2-1-stable 
-cd $app_dir
-
