@@ -9,38 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090430085617) do
+ActiveRecord::Schema.define(:version => 20090506092850) do
 
-  create_table "categories", :force => true do |t|
+  create_table "models", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "databases", :force => true do |t|
-    t.string   "name"
-    t.string   "uri"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "endpoints", :force => true do |t|
-    t.integer  "category_id"
-    t.integer  "prediction_type_id"
-    t.integer  "database_id"
-    t.integer  "port"
-    t.string   "name"
-    t.string   "title"
-    t.string   "endpoint_definition"
-    t.string   "endpoint_definition_uri"
-    t.string   "unit"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "prediction_types", :force => true do |t|
-    t.string   "name"
+    t.boolean  "regression", :default => false
+    t.boolean  "ready",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

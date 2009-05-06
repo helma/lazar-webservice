@@ -18,7 +18,7 @@ class Endpoint < ActiveRecord::Base
   end
 
   def rel_path
-    category.name + "/" + database.name + "/" + name 
+    id
   end
 
   def uri
@@ -55,9 +55,5 @@ class Endpoint < ActiveRecord::Base
       last_port + 1
     end
   end
-
-  #def category
-    #self.category.name
-  #end
 
 end
