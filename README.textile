@@ -72,35 +72,17 @@ h2. Installation
 
 	@git clone git@github.com:helma/lazar-webservice.git@
 
-# Get the source code for lazar-core
+# Install lazar-core and prepare the lazar webservice
 
-	@git clone git@github.com:helma/lazar-core.git lib/lazar-core@
+	@rake lazar:setup@
 
-# Get the correct branch for lazar-core
-
-	@cd lib/lazar-core@
-	@git checkout -b nosocket origin/nosocket@
-
-# Compile @lazar@
-	
-	@make lazar.so linfrag@
-
-# Create database schema
-
-	@cd ../..@
-	@rake db:migrate@
-
-# Create an user for model creation
-
-	@script/console@
-	@>> User.create(:name => 'my_username', :hashed_password => Digest::MD5.hexdigest('my_secret_password'))@
-	@exit@
+	If lazar-core does not compile
+		
+		* Make sure, that you have the development libraries "Swig":www.swig.org, "GSL":www.gnu.org/software/gsl, "Boost":www.boost.org, "OpenBabel":openbabel.org, "R":www.r-project.org installed
+		* Check the paths in the Makefile of lib/lazar-core and adjust them to your system settings
 
 # Start the service
-
-e.g. by
 
 	@script/server@
 
 Now you should be able to contact localhost:3000 and use the REST API.
-to be completed
