@@ -1,23 +1,22 @@
-= LAZAR-WEBSERVICE
+h1. LAZAR-WEBSERVICE
 
 This is an example webservice for the <tt>lazar</tt>[lazar.in-silico.de] prediction system and public data from the DSSTOX[http://www.epa.gov/nheerl/dsstox/] project.
 
-== REST API
+h2. REST API
 
-Description						Method	URI							Parameters
+_.Description					|	_.Method	| _.URI						|	_.Parameters
+_.List all models			|	GET 			| /models					|
+_.Show a single model	|	GET 			| /models/{id}		|
+_.Predict smiles			|	GET 			| /models/{id}		| smiles
+_.Create a model 			|	POST 			| /models					| structure_file, activity_file, username, password
+_.Delete a model			|	PUT 			| /models/{id}		| username, password
 
-List all models				GET 		/models
-Show a single model		GET 		/models/{id}
-Predict smiles				GET 		/models/{id}		smiles
-Create a model 				POST 		/models					structure_file, activity_file, username, password
-Delete a model				PUT 		/models/{id}		username, password
-
-== Return values
+h2. Return values
 
 Success: XML file with requested information
 Failure: Text with error description
 
-== Input file format
+h2. Input file format
 
 To create a model you have to POST files with training data. Both input files should have 2 columns, delimited by a tab or whitespaces. No headers are allowed.
 
@@ -34,39 +33,39 @@ activity_file:
 
 You can provide more than one activity per compound ID (for replicated experiments). Activites without structures and structures without activities will be ignored. 
 
-== Examples
+h2. Examples
 
-=== Display all available models
+h3. Display all available models
 
-> curl -X GET http://localhost:3000/models
+@> curl -X GET http://localhost:3000/models@
 
-=== Display information for a single model
+h3. Display information for a single model
 
-> curl -X GET http://localhost:3000/models/1
+@> curl -X GET http://localhost:3000/models/1@
 
 Note: Detailed model annotations (data sources, endpoint definitions, validatin results, ...) will be provided by a separate component.
 
-=== Predict rodent carcinogenicity (CPDB multi_cell_call) for Aniline
+h3. Predict rodent carcinogenicity (CPDB multi_cell_call) for Aniline
 
-> curl -X GET http://localhost:3000/models/1?smiles=c1cccc1N
+@> curl -X GET http://localhost:3000/models/1?smiles=c1cccc1N@
 
 Important: Smiles strings have to be URL encoded!
 
-=== Create a new prediction model for hamster carcinogenicity
+h3. Create a new prediction model for hamster carcinogenicity
 
-curl -X POST -F structure_file=@hamster_carcinogenicity.smi -F activity_file=@hamster_carcinogenicity.class -F username=test -F password=test http://localhost:3000/models
+@> curl -X POST -F structure_file=@hamster_carcinogenicity.smi -F activity_file=@hamster_carcinogenicity.class -F username=test -F password=test http://localhost:3000/models@
 
-=== Delete a model
+h3. Delete a model
 
-curl -X DELETE -d username=test -d password=test http://localhost:3000/models/1
+@> url -X DELETE -d username=test -d password=test http://localhost:3000/models/1@
 
-== Error codes
+h2. Error codes
 
 200     OK
 404     Not Found
 500     Internal Server Error	
 503     Service Unavailable
 
-== Installation
+h2. Installation
 
 to be completed

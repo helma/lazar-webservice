@@ -1,0 +1,155 @@
+carcinogenicity:
+  -
+    endpoint: Rodent carcinogenicity (multiple sex/species/sites)
+    directory: public/data/cpdb/multi_cell_call/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#ActivityCategory_MultiCellCall"
+    endpoint_definition: 'An assignment of carcinogenic categorical activity based on multicell evidence for or against activity:<br/> <b>active</b>, with more than one TD50 or tumor site listed for carcinogenicity experiment sex/species cells (e.g., liver, lung, or Rat Male, Rat Female, etc);<br/> <b>inactive</b>, with no TD50 or tumor site listed AND more than one "no positive results" entry for carcinogenicity experiment sex/species cells (e.g., Rat Male, Rat Female, etc);' 
+    source_url: "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Rodent carcinogenicity (single sex/species/site)
+    directory: public/data/cpdb/single_cell_call/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#ActivityCategory_SingleCellCall"
+    endpoint_definition: 'An assignment of carcinogenic categorical activity based on minimal evidence for or against activity:<br/> <b>active</b>, with one or more TD50 and tumor site listed for one or more carcinogenicity experiment sex/species cell (e.g., Rat Male, Rat Female, etc);<br/> <b>inactive</b>, with no TD50 or tumor site listed AND one or more "no positive results" entry for one or more carcinogenicity experiment sex/species cell (e.g., Rat Male, Rat Female, etc);'
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Rat carcinogenicity (both sexes)
+    directory: public/data/cpdb/rat_carcinogenicity/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Rat_BothSexes"
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Rat carcinogenicity (male)
+    directory: public/data/cpdb/rat_male_carcinogenicity/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Rat_Male"
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Rat carcinogenicity (female)
+    directory: public/data/cpdb/rat_female_carcinogenicity/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Rat_Female"
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Mouse carcinogenicity (both sexes)
+    directory: public/data/cpdb/mouse_carcinogenicity/
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Mouse_BothSexes"
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Mouse carcinogenicity (male)
+    directory: public/data/cpdb/mouse_male_carcinogenicity/
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Mouse_Male"
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Mouse carcinogenicity (female)
+    directory: public/data/cpdb/mouse_female_carcinogenicity/
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Mouse_Female"
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Hamster carcinogenicity (both sexes)
+    directory: public/data/cpdb/hamster_carcinogenicity/
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Hamster_BothSexes"
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Hamster carcinogenicity (male)
+    directory: public/data/cpdb/hamster_male_carcinogenicity/
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Hamster_Male"
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Hamster carcinogenicity (female)
+    directory: public/data/cpdb/hamster_female_carcinogenicity/
+    endpoint_definition: 'Active if at least one target site has been reported, inactive if no positive results have been reported'
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#TargetSites_Hamster_Female"
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: IRIS upper-bound excess lifetime cancer risk
+    directory: public/data/iris/drinkingwater_unitrisk_micromol_per_l/
+    endpoint_definition_url: "http://www.epa.gov/NCCT/dsstox/CentralFieldDef.html#DrinkingWater_UnitRisk_micromol_per_L"
+    endpoint_definition: 'Unit Risk is defined as the upper-bound excess lifetime cancer risk estimated to result from continuous exposure to an agent at a concentration of 1 µg/L in water, or 1 µg/m3 in air. The interpretation of unit risk would be as follows: if unit risk = 2 x 10-6 per micromol/L, 2 excess cancer cases (upper bound estimate) are expected to develop per 1,000,000 people if exposed daily for a lifetime to 1 microg of the chemical in 1 liter of drinking water. Units are micromol/L. For more information, see: http://www.epa.gov/iris/carcino.htm. Refer to the IRIS Summary for more details on a particular chemical assessment.'
+    source_url: "http://www.epa.gov/NCCT/dsstox/sdf_iristr.html"
+    applicability_domain: "0.2"
+    unit: "micromol/l"
+    
+mutagenicity:
+  -
+    endpoint: Salmonella typhimurium (CPDB)
+    directory: public/data/cpdb/salmonella_mutagenicity/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#Mutagenicity_SAL_CPDB"
+    endpoint_definition: "A chemical is classified within the CPDB as mutagenic, i.e. positive, in the Salmonella assay if it was evaluated overall as either mutagenic or weakly mutagenic by Zeiger or as overall positive by the EPA Gene-Tox Program. All other chemicals evaluated for mutagenicity by these two sources are reported as negative."
+    source_url:  "http://www.epa.gov/ncct/dsstox/sdf_cpdbas.html"
+  -
+    endpoint: Salmonella typhimurium (Kazius/Bursi)
+    directory: public/data/kazius/mutagenicity/
+    endpoint_definition_url: "http://pubs.acs.org/cgi-bin/abstract.cgi/jmcmar/2005/48/i01/abs/jm040835a.html"
+    endpoint_definition: "<b>nonmutagen</b>, if only negative Ames test results were reported</br> <b>mutagen </b>if one ore more positive Ames test results are available"
+    source_url:  "http://www.cheminformatics.org/datasets/bursi/"
+
+"fda-human-liver":
+  -
+    endpoint: Composite activity
+    directory: public/data/fda-human-liver/composite-activity/
+    endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+    endpoint_definition: ""
+    source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+  -
+    endpoint: Alkaline phosphatase increase
+    directory: public/data/fda-human-liver/alkaline-phosphatase-increase/
+    endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+    endpoint_definition: ""
+    source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+  -
+    endpoint: GGT increase
+    directory: public/data/fda-human-liver/GGT-increase/
+    endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+    endpoint_definition: ""
+    source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+  -
+    endpoint: LDH increase
+    directory: public/data/fda-human-liver/LDH-increase/
+    endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+    endpoint_definition: ""
+    source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+  -
+    endpoint: SGOT increase
+    directory: public/data/fda-human-liver/SGOT-increase/
+    endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+    endpoint_definition: ""
+    source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+  -
+    endpoint: SGPT increase
+    directory: public/data/fda-human-liver/SGPT-increase/
+    endpoint_definition_url: "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+    endpoint_definition: ""
+    source_url:  "http://www.fda.gov/Cder/Offices/OPS_IO/adverse_effect_database.htm"
+    
+fda_mdd:
+  -
+    endpoint: Maximum recommended daily dose
+    directory: public/data/fdamdd/dose_mrdd_mmol/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#Dose_MRDD_mmol"
+    endpoint_definition: 'Maximum recommended daily dose (or maximum recommended therapeutic dose) values were determined from pharmaceutical clinical trials that employed an oral route of exposure and daily treatments, usually for 3-12 months. Drugs were given as single or divided dose treatment regimens to achieve desired pharmacological effects. Roughly 5% of the pharmaceuticals in the FDAMDD data filewere antineoplastics and anesthetics and were administered intravenously and/or intramuscularly. When separate MRDDs were reported for different routes of exposure, only the oral MRDD was included in the data file and only MRDD values reported for the average adult patient were used. Pharmaceuticals that are administered orally are usually tested over a limited range of doses and have MRDDs reported as mg/day. The mg/day unit was converted to mg/kg-body weight (bw)/day based upon an average adult weighing 60 kg. In contrast, the dose unit for most antineoplastic drug MRDDs is reported as mg/m 2 which was converted to mg/kg-bw/day using the formula mg/kg-bw/day = mg/m 2/37 for an average adult. Additionally, a few drugs had MRDDs reported in parts per million (ppm) which were converted to mg/kg-bw/day on the basis that 1000 ppm equals 25 mg/kg-bw/day for an average 60 kg adult. These MRDD values were the basis of the QSAR analysis in (Matthews et al, 2004).<br/>
+
+MRDD values were extracted from Martindale: The Extra Pharmacopoeia (1973, 1983, and 1993) and The Physicians Desk Reference (1995 and 1999).<br/> 
+
+Maximum recommended daily dose measure, Dose_MRDD_mg, converted to millimoles:  Dose_MRDD_mmol = Dose_MRDD_mg / STRUCTURE_MolecularWeight. Note that this mg to mmol conversion in FDAMDD assumes that the compound dose in mg corresponds to the dose of the active ingredient in a formulation. '
+    source_url: "http://www.epa.gov/ncct/dsstox/sdf_fdamdd.html"
+    applicability_domain: "0.2"
+    unit: "milimol/kg-bw/day"
+
+epa_fhm:
+  -
+    endpoint: 96 hr LC50
+    directory: public/data/epafhm/lc50_mmol/
+    endpoint_definition_url: "http://www.epa.gov/ncct/dsstox/CentralFieldDef.html#LC50_mmol"
+    endpoint_definition: '96 hr LC50 (concentration producing lethality in 50% of test animals after 96 hours exposure) in mg/l. Calculated using Spearman-Karber method.<br/>
+
+Geometric mean of LC50s presented if more than one bioassay conducted for the chemical<br/>
+Conversion of LC50_mg to mmol units: LC50_mmol = LC50_mg / STRUCTURE_MolecularWeight. “blank” or null entry indicates no mortality, or less than 50% mortality observed at 96hr.'
+    source_url: "http://www.epa.gov/ncct/dsstox/sdf_epafhm.html"
+    applicability_domain: "0.15"
+    unit: "milimol"
+
