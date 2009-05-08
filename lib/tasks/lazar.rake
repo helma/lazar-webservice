@@ -1,3 +1,4 @@
+require 'digest/md5'
 namespace :lazar do
 
   desc "Install lazar-core and prepare the lazar webservice"
