@@ -4,12 +4,12 @@ This is an example "OpenTox":http://opentox.org webservice for the "@lazar@":htt
 
 h2. REST API
 
-| _.Description					|	_.Method	| _.URI						|	_.Parameters																			|
-| _.List all models			|	GET 			| /models					|																										|
-| _.Show a single model	|	GET 			| /models/{id}		|																										|
-| _.Predict smiles			|	GET 			| /models/{id}		| smiles																						|
-| _.Create a model 			|	POST 			| /models					| structure_file, activity_file, username, password |
-| _.Delete a model			|	PUT 			| /models/{id}		| username, password																|
+| *Description*					|	*Method*	| *URI*						|	*Parameters*																			|
+| _List all models_			|	GET 			| /models					|																										|
+| _Show a single model_	|	GET 			| /models/{id}		|																										|
+| _Predict smiles_			|	GET 			| /models/{id}		| smiles																						|
+| _Create a model_ 			|	POST 			| /models					| structure_file, activity_file, username, password |
+| _Delete a model_			|	PUT 			| /models/{id}		| username, password																|
 
 h2. Return values
 
