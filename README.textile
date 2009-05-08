@@ -1,20 +1,20 @@
 h1. LAZAR-WEBSERVICE
 
-This is an example webservice for the <tt>lazar</tt>[lazar.in-silico.de] prediction system and public data from the DSSTOX[http://www.epa.gov/nheerl/dsstox/] project.
+This is an example "OpenTox":http://opentox.org webservice for the "@lazar@":http://lazar.in-silico.de prediction system and public data from the "DSSTOX":http://www.epa.gov/nheerl/dsstox/ project.
 
 h2. REST API
 
-_.Description					|	_.Method	| _.URI						|	_.Parameters
-_.List all models			|	GET 			| /models					|
-_.Show a single model	|	GET 			| /models/{id}		|
-_.Predict smiles			|	GET 			| /models/{id}		| smiles
-_.Create a model 			|	POST 			| /models					| structure_file, activity_file, username, password
-_.Delete a model			|	PUT 			| /models/{id}		| username, password
+| _.Description					|	_.Method	| _.URI						|	_.Parameters																			|
+| _.List all models			|	GET 			| /models					|																										|
+| _.Show a single model	|	GET 			| /models/{id}		|																										|
+| _.Predict smiles			|	GET 			| /models/{id}		| smiles																						|
+| _.Create a model 			|	POST 			| /models					| structure_file, activity_file, username, password |
+| _.Delete a model			|	PUT 			| /models/{id}		| username, password																|
 
 h2. Return values
 
-Success: XML file with requested information
-Failure: Text with error description
+	Success: XML file with requested information
+	Failure: Text with error description
 
 h2. Input file format
 
@@ -37,34 +37,34 @@ h2. Examples
 
 h3. Display all available models
 
-@> curl -X GET http://localhost:3000/models@
+	@> curl -X GET http://localhost:3000/models@
 
 h3. Display information for a single model
 
-@> curl -X GET http://localhost:3000/models/1@
+	@> curl -X GET http://localhost:3000/models/1@
 
 Note: Detailed model annotations (data sources, endpoint definitions, validatin results, ...) will be provided by a separate component.
 
 h3. Predict rodent carcinogenicity (CPDB multi_cell_call) for Aniline
 
-@> curl -X GET http://localhost:3000/models/1?smiles=c1cccc1N@
+	@> curl -X GET http://localhost:3000/models/1?smiles=c1cccc1N@
 
 Important: Smiles strings have to be URL encoded!
 
 h3. Create a new prediction model for hamster carcinogenicity
 
-@> curl -X POST -F structure_file=@hamster_carcinogenicity.smi -F activity_file=@hamster_carcinogenicity.class -F username=test -F password=test http://localhost:3000/models@
+	@> curl -X POST -F structure_file=@hamster_carcinogenicity.smi -F activity_file=@hamster_carcinogenicity.class -F username=test -F password=test http://localhost:3000/models@
 
 h3. Delete a model
 
-@> url -X DELETE -d username=test -d password=test http://localhost:3000/models/1@
+	@> curl -X DELETE -d username=test -d password=test http://localhost:3000/models/1@
 
 h2. Error codes
 
-200     OK
-404     Not Found
-500     Internal Server Error	
-503     Service Unavailable
+	200     OK
+	404     Not Found
+	500     Internal Server Error	
+	503     Service Unavailable
 
 h2. Installation
 
