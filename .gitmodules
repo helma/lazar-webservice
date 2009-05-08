@@ -1,6 +1,3 @@
-[submodule "lib/daemon_controller"]
-	path = lib/daemon_controller
-	url = git://github.com/FooBarWidget/daemon_controller.git
 [submodule "lib/lazar"]
 	path = lib/lazar
 	url = git://github.com/helma/lazar-core.git
