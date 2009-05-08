@@ -43,7 +43,7 @@ h3. Display information for a single model
 
 	@curl -X GET http://localhost:3000/models/1@
 
-Note: Detailed model annotations (data sources, endpoint definitions, validatin results, ...) will be provided by a separate component.
+Note: Detailed model annotations (data sources, endpoint definitions, validation results, ...) will be provided by a separate component.
 
 h3. Predict rodent carcinogenicity (CPDB multi_cell_call) for Aniline
 
@@ -68,9 +68,39 @@ h2. Error codes
 
 h2. Installation
 
-* Get the source code
+# Get the source code for the webservice
 
 	@git clone git@github.com:helma/lazar-webservice.git@
 
-* 
+# Get the source code for lazar-core
+
+	@git clone git@github.com:helma/lazar-core.git lib/lazar-core@
+
+# Get the correct branch for lazar-core
+
+	@cd lib/lazar-core@
+	@git checkout -b nosocket origin/nosocket@
+
+# Compile @lazar@
+	
+	@make lazar.so linfrag@
+
+# Create database schema
+
+	@cd ../..@
+	@rake db:migrate@
+
+# Create an user for model creation
+
+	@script/console@
+	@>> User.create(:name => 'my_username', :hashed_password => Digest::MD5.hexdigest('my_secret_password'))@
+	@exit@
+
+# Start the service
+
+e.g. by
+
+	@script/server@
+
+Now you should be able to contact localhost:3000 and use the REST API.
 to be completed

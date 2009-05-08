@@ -1,3 +1,0 @@
-[submodule "lib/lazar"]
-	path = lib/lazar
-	url = git://github.com/helma/lazar-core.git

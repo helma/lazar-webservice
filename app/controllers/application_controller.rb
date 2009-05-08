@@ -11,9 +11,7 @@ class ApplicationController < ActionController::Base
     authorized = false
     if params[:password] && params[:username]
       hashed_password = Digest::MD5.hexdigest(params[:password])
-      if User.find_by_name_and_hashed_password(params[:username],hashed_password)
-        authorized = true
-      end
+      authorized = true if session[:user] = User.find_by_name_and_hashed_password(params[:username],hashed_password)
     end
     render :text => "You are not authorized to perform this action.\n", :status => :unauthorized unless authorized
   end

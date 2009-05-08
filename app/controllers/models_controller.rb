@@ -40,7 +40,7 @@ class ModelsController < ApplicationController
       regression = true
       regression = false if activity_data.collect{|line| line.split(/\s+/)[1].to_i}.uniq.sort == [0,1]
 
-      model = Model.create(:name => name, :regression => regression)
+      model = Model.create(:name => name, :regression => regression, :user => session[:user])
       FileUtils.mkdir_p(model.data_path)
       FileUtils.cp_r(params[:structure_file].path,model.structure_file)
 

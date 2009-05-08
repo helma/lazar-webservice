@@ -1,12 +1,12 @@
 require 'socket'                # Get sockets from stdlib
-require "lib/lazar/lazar"
+require "lib/lazar-core/lazar"
 class Server < ActiveRecord::Base
 
   belongs_to :model
 
   def start
     self.pid = fork {
-      Dir.chdir("#{RAILS_ROOT}/lib/lazar") #necessary for unknown reasons
+      Dir.chdir("#{RAILS_ROOT}/lib/lazar-core") #necessary for unknown reasons
       server = TCPServer.open(model.port)   # Socket to listen on port
       if model.regression
         Lazar.kernel = true
