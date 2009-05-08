@@ -3,7 +3,14 @@ require 'socket'      # Sockets are in standard library
 class Client
 
   def initialize(model,smiles)
-    socket = TCPSocket.open("localhost",model.port)
+    begin
+      socket = TCPSocket.open("localhost",model.port)
+    rescue
+      # try to start server
+      server = Server.find_or_create_by_model_id(model.id)
+      server.start
+      return
+    end
     socket.puts smiles
     result = socket.read
     puts result

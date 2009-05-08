@@ -1,7 +1,10 @@
 class Model < ActiveRecord::Base
 
+  belongs_to :user
+  has_one :server
+
   def data_path
-    "#{RAILS_ROOT}/public/data#{uri}/"
+    "#{RAILS_ROOT}/public/models#{uri}/"
   end
 
   def uri
@@ -26,6 +29,14 @@ class Model < ActiveRecord::Base
 
   def port
     10000 + id
+  end
+
+  def server?
+    if TCPSocket.new('localhost', self.port) 
+      true
+    else
+      false
+    end
   end
 
 end
