@@ -28,7 +28,7 @@ class Model < ActiveRecord::Base
   end
 
   def port
-    10000 + id
+    20000 + id
   end
 
   def server?
