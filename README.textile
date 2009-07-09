@@ -74,8 +74,10 @@ h2. Installation
 
 * Install lazar-core and prepare the lazar webservice
 
-	bc.  cd lazar-webservice
+	<pre>
+	cd lazar-webservice
 	rake lazar:setup
+	</pre>
 
 	If lazar-core does not compile
 		
