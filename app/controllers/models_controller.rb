@@ -16,7 +16,7 @@ class ModelsController < ApplicationController
         begin
           render :xml => Client.new(model,URI.unescape(params[:smiles])), :status => :ok
         rescue
-          render :text => "Starting server for model with ID=#{model.id}. Please try again later.\n", :status => :service_unavailable
+          #render :text => "Starting server for model with ID=#{model.id}. Please try again later.\n", :status => :service_unavailable
         end
       else # show
         begin

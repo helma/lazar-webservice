@@ -15,7 +15,7 @@ class Client
     result = socket.read
     puts result
     @prediction = YAML::load(result)#.to_yaml
-    self.to_xml
+    #self.to_xml
   end
 
   def to_xml

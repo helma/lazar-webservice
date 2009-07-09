@@ -70,20 +70,24 @@ h2. Installation
 
 * Get the source code for the webservice
 
-	@git clone git@github.com:helma/lazar-webservice.git@
+	@git clone git://github.com/helma/lazar-webservice.git@
 
 * Install lazar-core and prepare the lazar webservice
 
-	@cd lazar-webservice@
-	@rake lazar:setup@
+	<code>
+	cd lazar-webservice
+	rake lazar:setup
+	</code>
 
 	If lazar-core does not compile
 		
 		* Make sure, that you have the development libraries "Swig":www.swig.org, "GSL":www.gnu.org/software/gsl, "Boost":www.boost.org, "OpenBabel":openbabel.org, "R":www.r-project.org installed
 		* Configure R with @./configure --without-blas --enable-BLAS-shlib --enable-R-shlib@
 		* Install the R kernlab package:
-			@wget http://cran.r-project.org/src/contrib/kernlab_0.9-8.tar.gz@
-			@R CMD INSTALL kernlab_0.9-8.tar.gz@
+			<code>
+			wget http://cran.r-project.org/src/contrib/kernlab_0.9-8.tar.gz
+			R CMD INSTALL kernlab_0.9-8.tar.gz
+			</code>
 		* Check the paths in the Makefile of lib/lazar-core and adjust them to your system settings
 
 * Start the service
