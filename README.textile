@@ -75,8 +75,8 @@ h2. Installation
 * Install lazar-core and prepare the lazar webservice
 
 	<pre>
-	cd lazar-webservice
-	rake lazar:setup
+cd lazar-webservice
+rake lazar:setup
 	</pre>
 
 	If lazar-core does not compile
@@ -85,8 +85,10 @@ h2. Installation
 		* Configure R with @./configure --without-blas --enable-BLAS-shlib --enable-R-shlib@
 		* Install the R kernlab package:
 
-			bc.  wget http://cran.r-project.org/src/contrib/kernlab_0.9-8.tar.gz
-			R CMD INSTALL kernlab_0.9-8.tar.gz
+			<pre>
+wget http://cran.r-project.org/src/contrib/kernlab_0.9-8.tar.gz
+R CMD INSTALL kernlab_0.9-8.tar.gz
+			</pre>
 
 		* Check the paths in the Makefile of lib/lazar-core and adjust them to your system settings
 
