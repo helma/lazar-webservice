@@ -5,7 +5,7 @@ class ModelsController < ApplicationController
     begin
       render :xml => Model.find(:all).to_xml, :status => :ok
     rescue
-      render :text => "Internal error", :status => :internal_server_error
+      render :text => "Index not found", :status => :not_found
     end
   end
 
@@ -16,7 +16,7 @@ class ModelsController < ApplicationController
         begin
           render :xml => Client.new(model,URI.unescape(params[:smiles])), :status => :ok
         rescue
-          #render :text => "Starting server for model with ID=#{model.id}. Please try again later.\n", :status => :service_unavailable
+          render :text => "Starting server for model with ID=#{model.id}. Please try again later.\n", :status => :service_unavailable
         end
       else # show
         begin
