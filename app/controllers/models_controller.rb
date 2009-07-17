@@ -3,7 +3,11 @@ class ModelsController < ApplicationController
 
   def index
     begin
-      render :xml => Model.find(:all).to_xml, :status => :ok
+      list = []
+      Model.find(:all).each do |model|
+        list << "http://" + request.host + request.request_uri + model.uri
+      end
+      render :text => list.join("\n"), :status => :ok
     rescue
       render :text => "Index not found", :status => :not_found
     end
