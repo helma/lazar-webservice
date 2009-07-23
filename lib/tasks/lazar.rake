@@ -9,7 +9,7 @@ namespace :lazar do
     `git clone git@github.com:helma/lazar-core.git lib/lazar-core`
     Dir.chdir("#{RAILS_ROOT}/lib/lazar-core")
     `git checkout -b nosocket origin/nosocket`
-    `make lazar.so linfrag`
+    `make lazar.so linfrag lazar`
   end
 
   desc "Create a new user"

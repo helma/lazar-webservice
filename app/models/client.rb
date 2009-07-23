@@ -6,10 +6,14 @@ class Client
     begin
       socket = TCPSocket.open("localhost",model.port)
     rescue
-      # try to start server
-      server = Server.find_or_create_by_model_id(model.id)
-      server.start
-      return
+      begin
+        # try to start server
+        server = Server.find_or_create_by_model_id(model.id)
+        server.start
+        socket = TCPSocket.open("localhost",model.port)
+      rescue
+        return
+      end
     end
     socket.puts smiles
     result = socket.read

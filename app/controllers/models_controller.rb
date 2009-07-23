@@ -1,13 +1,11 @@
 require 'digest/md5'
+require 'rest_client'
+
 class ModelsController < ApplicationController
 
   def index
     begin
-      list = []
-      Model.find(:all).each do |model|
-        list << "http://" + request.host + request.request_uri + model.uri
-      end
-      render :text => list.join("\n"), :status => :ok
+      render :text => Model.find(:all).collect { |model| "http://" + request.host + request.port_string + request.request_uri + model.id.to_s }.join("\n"), :status => :ok
     rescue
       render :text => "Index not found", :status => :not_found
     end
@@ -15,50 +13,62 @@ class ModelsController < ApplicationController
 
   def show
     begin
-      model = Model.find(params[:id])
+      @model = Model.find(params[:id])
       if params[:smiles] # predict
         begin
-          render :xml => Client.new(model,URI.unescape(params[:smiles])), :status => :ok
+          @prediction = Client.new(@model,URI.unescape(params[:smiles]))
+          render :xml => @prediction, :status => :ok
         rescue
-          render :text => "Starting server for model with ID=#{model.id}. Please try again later.\n", :status => :service_unavailable
+          render :text => "Can not start server for model with ID #{@model.id}.\n", :status => :service_unavailable
         end
       else # show
-        begin
-          render :xml => model.to_xml, :status => :ok
-        rescue
-          render :text => "XML conversion failed\n", :status => :internal_server_error
+        respond_to do |format|
+          format.xml
         end
       end
     rescue 
-      render :text => "Couldn't find Model with ID=#{params[:id]}.\n", :status => :not_found
+      render :text => "Couldn't find Model with ID #{params[:id]}.\n", :status => :not_found
     end
   end
 
   def create
 
     begin
-      name = File.basename(params[:activity_file].original_filename).sub(/\..*$/,'')
-      activity_data = File.open(params[:activity_file].path,'r').readlines
+      activity_name = params[:name]
+      training_data = params[:file].readlines
 
       # guess classification/regression from input file
       regression = true
-      regression = false if activity_data.collect{|line| line.split(/\s+/)[1].to_i}.uniq.sort == [0,1]
+      regression = false if training_data.collect{|line| line.split(/\s+/)[2].to_i}.uniq.sort == [0,1]
 
-      model = Model.create(:name => name, :regression => regression, :user => session[:user])
+      model = Model.create(:name => activity_name, :regression => regression, :user => session[:user])
       FileUtils.mkdir_p(model.data_path)
-      FileUtils.cp_r(params[:structure_file].path,model.structure_file)
 
       # convert activity file from 2 to 3 columns
-      File.open(model.activity_file,'w') do |activity_file|
-        activity_data.each do |line|
+      activity_file = File.open(model.activity_file,'w')
+      structure_file = File.open(model.structure_file,'w')
+      training_data.each do |line|
+        begin
           items = line.chomp.split(/\s+/)
-          activity_file.puts "#{items[0]}\t\"#{name}\"\t#{items[1]}\n"
+          id = items[0]
+          smiles = items[1]
+          activity = items[2]
+          structure_file.puts "#{id}\t#{smiles}\n"
+          activity_file.puts "#{id}\t\"#{activity_name}\"\t#{activity}\n"
+          puts "#{id}\t#{smiles}\t#{activity}\n"
+        rescue
         end
       end
-      #FileUtils.cp_r(params[:activity_file].path,model.activity_file)
-      pid = fork { FeatureDatabase.new(model) }
+
+      activity_file.close
+      structure_file.close
+      
+      pid = fork do
+        FeatureDatabase.new(model) 
+        Validation.new(model)
+      end
       Process.detach(pid)
-      render :xml => model.to_xml, :status => :ok
+      render :text => "http://" + request.host + request.port_string + request.request_uri + model.id.to_s, :status => :ok
     rescue
       render :text => "Failed to create new model\n", :status => :internal_server_error
     end
@@ -77,9 +87,9 @@ class ModelsController < ApplicationController
       Server.stop(model.port)
       FileUtils.rm_r(File.dirname(model.structure_file))
       model.destroy
-      render :text => "Model with ID=#{id} deleted!\n", :status => :ok
+      render :text => "Model with ID #{id} deleted!\n", :status => :ok
     rescue
-      render :text => "Could not delete model with ID=#{id}.\n", :status => :internal_server_error
+      render :text => "Could not delete model with ID #{id}.\n", :status => :internal_server_error
     end
   end
 

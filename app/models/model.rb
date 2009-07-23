@@ -27,6 +27,23 @@ class Model < ActiveRecord::Base
     data_path + name + ".linfrag"
   end
 
+  def validation_file
+    data_path + name + ".loo"
+  end
+
+  def validation_loo_filename
+    name + ".loo"
+  end
+
+
+  def validation_summary_file
+    data_path + name + ".summary"
+  end
+
+  def validation_summary_filename
+    name + ".summary"
+  end
+
   def port
     20000 + id
   end
