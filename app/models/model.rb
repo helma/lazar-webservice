@@ -35,7 +35,6 @@ class Model < ActiveRecord::Base
     name + ".loo"
   end
 
-
   def validation_summary_file
     data_path + name + ".summary"
   end

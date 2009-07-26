@@ -8,9 +8,10 @@ Rails::Initializer.run do |config|
 
   config.plugins = [:all]
   config.action_controller.session = { :session_key => "_myapp_session", :secret => "5088f3e9d90958b1a8d2f5832f00e8ed" }
-  config.load_paths += %W( #{RAILS_ROOT}/lib/lazar )
+  config.load_paths += %W( #{RAILS_ROOT}/lib/lazar-core )
   config.action_controller.session_store = :active_record_store
 
 end
 
+ENV['R_HOME'] = '/usr/local/lib64/R'
 COMPOUNDS_SERVICE_URI = "http://webservices.in-silico.ch/compounds/"

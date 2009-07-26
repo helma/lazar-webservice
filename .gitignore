@@ -2,7 +2,7 @@ lib/lazar-core
 vendor/*
 db/*sqlite3
 log/*.log
-tmp/**/*
+tmp/*
 .DS_Store
 public/cache/**/*
 public/models

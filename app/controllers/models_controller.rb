@@ -83,13 +83,12 @@ class ModelsController < ApplicationController
   def destroy
     begin
       model = Model.find(params[:id])
-      id = Model.id
-      Server.stop(model.port)
+      model.server.stop if model.server
       FileUtils.rm_r(File.dirname(model.structure_file))
       model.destroy
-      render :text => "Model with ID #{id} deleted!\n", :status => :ok
+      render :text => "Model with ID #{params[:id]} deleted!\n", :status => :ok
     rescue
-      render :text => "Could not delete model with ID #{id}.\n", :status => :internal_server_error
+      render :text => "Could not delete model with ID #{params[:id]}.\n", :status => :internal_server_error
     end
   end
 

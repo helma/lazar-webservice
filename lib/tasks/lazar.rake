@@ -1,4 +1,6 @@
 require 'digest/md5'
+require 'config/environment'
+
 namespace :lazar do
 
   desc "Install lazar-core and prepare the lazar webservice"
@@ -21,4 +23,10 @@ namespace :lazar do
     User.create(:name => username, :hashed_password => Digest::MD5.hexdigest(password))
   end
 
+  desc "(Re)validate all models"
+  task :validate do
+    Model.find(:all).each do |model|
+      Validation.new(model)
+    end
+  end
 end
